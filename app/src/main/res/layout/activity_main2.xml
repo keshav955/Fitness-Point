@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hunny.fitnesspoint.Main2Activity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/girl"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#da060606"></View>
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:src="@drawable/fitness1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo"
+        android:layout_marginTop="80dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Push Harder Than Your Limits"
+        android:textStyle="italic"
+        android:textColor="#d1d0d0"
+        android:id="@+id/quote"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_centerVertical="true"
+        android:id="@+id/caption">
+
+     <LinearLayout
+         android:layout_width="0dp"
+         android:layout_height="1dp"
+         android:layout_weight="1"
+         android:layout_margin="10dp"
+         android:background="#696565"
+         android:layout_gravity="center"
+         />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:text="S I G N U P  W I T H"
+            android:singleLine="true"
+            android:textColor="#aca9a9"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.8"
+            android:background="#696565"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/caption"
+        android:id="@+id/refer">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_corner_rectangle"
+        android:layout_marginRight="15dp"
+        >
+
+       <ImageView
+           android:layout_width="30dp"
+           android:layout_height="30dp"
+           android:src="@drawable/facebook"
+           android:layout_gravity="center"
+           android:layout_marginLeft="25dp"
+           android:id="@+id/fb_logo"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:text="Facebook"
+           android:layout_marginLeft="-10dp"
+           android:gravity="center" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_rectangle"
+            >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/google"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:id="@+id/google_logo"/>
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-20dp"
+            android:text="Google"
+            android:gravity="center"
+            />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradeint90"
+        android:layout_below="@+id/refer"
+        android:layout_margin="30dp"
+        android:layout_marginBottom="50dp"
+        android:onClick="login"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/gmail"
+            android:layout_gravity="center"
+            android:layout_marginLeft="35dp"
+            android:id="@+id/gmail_logo"/>
+
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:text="SIGN UP WITH EMAIL ADDRESS"
+        android:textColor="#fff"
+        android:id="@+id/to_login"
+        android:background="@null"/>
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
