@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "764651699283",
-    "firebase_url": "https://fir-b70e6.firebaseio.com",
-    "project_id": "fir-b70e6",
-    "storage_bucket": "fir-b70e6.appspot.com"
+    "project_number": "676889804456",
+    "firebase_url": "https://fitness-point-ea7dc.firebaseio.com",
+    "project_id": "fitness-point-ea7dc",
+    "storage_bucket": "fitness-point-ea7dc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:764651699283:android:e93006f993b01a3f",
+        "mobilesdk_app_id": "1:676889804456:android:1f8dbab2ae5d9bb9",
         "android_client_info": {
-          "package_name": "com.example.hunny.firebase"
+          "package_name": "com.example.hunny.fitnesspoint"
         }
       },
       "oauth_client": [
         {
-          "client_id": "764651699283-u324226b6ng4ci73mi5re573pcd49cgm.apps.googleusercontent.com",
+          "client_id": "676889804456-sd48egoelc4bf4gune6uehn5nf1riten.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hunny.fitnesspoint",
+            "certificate_hash": "00340417e1d90e9714eb46e99922f32e2ce788fc"
+          }
+        },
+        {
+          "client_id": "676889804456-84noev5dnlpno9m944f1rkn0pbld52fk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgMCYBQWbx_IacnfZB_CZuIbFijSvWgCo"
+          "current_key": "AIzaSyBWZz1H5FQGzCWgSyjvss4oKJ1Dde_7C2A"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676889804456-84noev5dnlpno9m944f1rkn0pbld52fk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

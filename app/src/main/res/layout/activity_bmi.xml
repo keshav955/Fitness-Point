@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1C1C"
+    tools:context="com.example.hunny.fitnesspoint.BMI">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:background="@drawable/default_theme"
+        android:weightSum="3"
+        android:id="@+id/default_theme">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:onClick="Back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:text="Body Mass Index"
+            android:layout_weight="2.5"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:id="@+id/height_layout"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/default_theme">
+
+        <TextView
+            android:layout_width="50dp"
+            android:id="@+id/measure_height"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#fff"
+            android:text=""
+            android:layout_marginRight="20dp"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:hint="0 Cm"
+            android:background="#fff"
+            android:padding="5dp"
+            android:maxLength="5"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:id="@+id/height" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/weight_layout"
+        android:layout_below="@+id/height_layout"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/measure_weight"
+            android:padding="5dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#fff"
+            android:text=""
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"/>
+
+
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:hint="0  Kg"
+            android:background="#fff"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="3dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:id="@+id/weight"
+            android:maxLength="3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/text">
+
+        <com.github.anastr.speedviewlib.SpeedView
+            android:id="@+id/speedView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:sv_withTremble="false"
+            app:sv_indicator="TriangleIndicator"
+            app:sv_lowSpeedPercent="30"
+            app:sv_mediumSpeedPercent="70"
+            app:sv_tickPadding="35dp"
+            app:sv_mediumSpeedColor="#0069ea1b"
+            app:sv_highSpeedColor="#00e14e04"
+            app:sv_unitUnderSpeedText="true"
+            app:sv_markColor="#161414"
+            app:sv_unitSpeedInterval="10dp"
+            app:sv_centerCircleColor="#00000000"
+            app:sv_unit="Your BMI"
+            app:sv_maxSpeed="40"
+            app:sv_lowSpeedColor="#00154cf5"
+            app:sv_speedometerMode="NORMAL"
+            app:sv_unitTextColor="#fff"
+            app:sv_unitTextSize="18sp"
+            app:sv_speedTextFormat="FLOAT"
+            app:sv_speedTextColor="#f57c0b"
+            app:sv_speedometerWidth="17dp"
+            app:sv_speedTextPosition="CENTER"
+            app:sv_speedTextSize="26sp"
+            app:sv_minSpeed="0"
+            app:sv_indicatorColor="#154cf5"
+            app:sv_textColor="#ffffff"
+            app:sv_indicatorWidth="20dp"
+            app:sv_tickNumber="5"
+            app:sv_textSize="9dp"
+            app:sv_tickRotation="true"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rainbow1"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/text">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            style="@style/TextAppearance.AppCompat"
+            android:textColor="#fff"
+            android:text="Your Weight is :" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#f48312"
+            android:id="@+id/caption"
+            android:text=" "/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

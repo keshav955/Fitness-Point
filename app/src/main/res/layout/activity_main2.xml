@@ -91,8 +91,7 @@
         android:layout_height="45dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corner_rectangle"
-        android:layout_marginRight="15dp"
-        >
+        android:layout_marginRight="15dp">
 
        <ImageView
            android:layout_width="30dp"
@@ -115,7 +114,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_corner_rectangle"
-            >
+            android:onClick="google_sign">
 
             <ImageView
                 android:layout_width="30dp"

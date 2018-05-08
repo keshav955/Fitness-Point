@@ -20,33 +20,32 @@
         android:layout_below="@id/default_theme"></View>
 
     <LinearLayout
+        android:id="@+id/default_theme"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:orientation="horizontal"
         android:background="@drawable/default_theme"
-        android:weightSum="3"
-        android:id="@+id/default_theme">
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_back"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:onClick="Back"
-            />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:gravity="center"
             android:layout_gravity="bottom"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="#fff"
+            android:layout_weight="2.5"
+            android:gravity="center"
             android:text="Welcome"
-            android:layout_weight="2.5"/>
+            android:textColor="#fff"
+            android:textSize="15dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,8 +64,8 @@
           android:gravity="center">
 
           <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_width="28dp"
+              android:layout_height="28dp"
               android:src="@drawable/ic_person"
               android:layout_marginLeft="15dp"/>
 
@@ -84,7 +83,7 @@
                 android:textSize="15dp"
                 android:id="@+id/email"
                 android:singleLine="true"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
                 android:background="@null"/>
@@ -97,23 +96,25 @@
         android:layout_height="wrap_content"
         android:background="@drawable/transparent"
         android:layout_margin="30dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="3">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_passkey"
-            android:layout_marginLeft="15dp"/>
+            android:layout_weight="0.28"
+            android:layout_marginLeft="10dp"/>
 
 
         <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.25">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
                 android:hint="PASSWORD"
                 android:textSize="15dp"
                 android:inputType="textPassword"
@@ -121,9 +122,18 @@
                 android:singleLine="true"
                 android:imeOptions="actionDone"
                 android:background="@null"
-                android:padding="12dp"/>
+                android:padding="8dp"/>
 
         </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:src="@drawable/not_visible"
+            android:layout_weight="0.25"
+            android:layout_marginRight="10dp"
+            android:tint="#232323"
+            android:id="@+id/visibility"/>
 
     </LinearLayout>
         <LinearLayout
@@ -135,10 +145,10 @@
             android:onClick="forgot_password">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:src="@drawable/ic_key"
-                android:tint="#ff031c"
+                android:tint="#bfb8b8"
                 android:id="@+id/key" />
 
             <TextView
@@ -147,7 +157,7 @@
                 android:text="Forgot Password?"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center_vertical"
-                android:textColor="#ff031c"
+                android:textColor="#bfb8b8"
                 android:id="@+id/forgot" />
         </LinearLayout>
 
@@ -156,9 +166,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:padding="20dp"
             android:text="L o g i N"
+            android:textStyle="bold"
             android:textColor="#fff"
             android:background="#ff0c24"
             android:onClick="login"
@@ -170,15 +180,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New User? Register here"
-        android:textColor="#fff"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
+        android:textColor="#fffeff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:layout_above="@id/login_button"
-        android:padding="5dp"
+        android:padding="10dp"
         android:onClick="sign_up"
         android:id="@+id/sign_up"/>
-
-
 
 
 </RelativeLayout>

@@ -43,28 +43,33 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/theme"
         android:scaleType="centerCrop"
-        android:src="@drawable/backg"/>
+        android:src="@drawable/abs_back"
+        android:id="@+id/imageView2" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#1d1e1e"
-        android:layout_below="@+id/theme"></View>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/theme"
+        android:background="#cc000000"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/theme"
-        android:layout_marginTop="100dp"
+        android:layout_below="@+id/step_view"
+        android:layout_marginTop="55dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/button_layout"
         android:background="@drawable/roundness"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:id="@+id/main_frame">
 
     </FrameLayout>
-
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -74,17 +79,19 @@
         android:src="@drawable/pp"
         android:scaleType="centerCrop"
         app:civ_border_width="12dp"
-        app:civ_border_color="#1f2020"
+        app:civ_border_color="#090909"
+        android:onClick="profile_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:layout_below="@+id/theme"/>
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/step_view"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:id="@+id/button_layout">
 
         <Button
             android:layout_width="0dp"
@@ -93,7 +100,8 @@
             android:background="@color/green"
             android:text="B A C K"
             android:textSize="16dp"
-            android:textColor="#fff"/>
+            android:textColor="#fff"
+            android:onClick="back"/>
 
         <View
             android:layout_width="2dp"
@@ -110,5 +118,30 @@
             android:onClick="next"/>
 
     </LinearLayout>
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/step_view"
+        android:layout_below="@id/theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        app:sv_selectedCircleColor="#f7f7f7"
+        app:sv_selectedTextColor="#ffffff"
+        app:sv_stepLineWidth="1.5dp"
+        app:sv_stepPadding="6dp"
+        app:sv_nextTextColor="#fff"
+        app:sv_nextStepLineColor="#fff"
+        app:sv_doneCircleColor="#01f526"
+        app:sv_doneStepLineColor="#696969"
+        app:sv_doneCircleRadius="14dp"
+        app:sv_selectedCircleRadius="12dp"
+        app:sv_selectedStepNumberColor="#000"
+        app:sv_stepViewStyle="@style/StepView"
+        app:sv_doneStepMarkColor="#ffffff"
+        app:sv_stepNumberTextSize="12sp"
+        app:sv_animationType="All" />
+
 
 </RelativeLayout>

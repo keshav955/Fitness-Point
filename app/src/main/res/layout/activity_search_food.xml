@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hunny.fitnesspoint.Search_Food_Activity"
+    android:background="#ccc">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:background="@drawable/default_theme"
+        android:weightSum="3"
+        android:id="@+id/theme">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="bottom"
+            android:tint="#fff"
+            android:layout_marginLeft="5dp"
+            android:onClick="Back"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:text="Add Food"
+            android:layout_weight="2.5"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shadow"
+        android:weightSum="3"
+        android:id="@+id/search"
+        android:layout_below="@+id/theme">
+
+            <SearchView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2.75"
+                android:queryHint="Search food"
+                android:searchHintIcon="@drawable/food"
+                android:layout_marginLeft="7dp"
+                android:id="@+id/search_bar"
+                android:iconifiedByDefault="false"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:background="#ccc"/>
+
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="21dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/barcode"
+            android:layout_weight="0.25"
+            android:tint="#513232"
+            android:onClick="barcode_scanner"/>
+        <!--
+                <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:inputType="text"
+                android:layout_weight="2.5"
+                android:background="?attr/selectableItemBackground"/>
+        -->
+<!--
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="21dp"
+            android:src="@drawable/search"
+            android:layout_weight="0.25"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"/>
+-->
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/search"
+        android:layout_marginTop="5dp"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
+
+
+
+</RelativeLayout>

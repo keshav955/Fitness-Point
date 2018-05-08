@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             @Override
             public void run() {
 
-                Intent i = new Intent(MainActivity.this, Login1.class);
+                Intent i = new Intent(RecycleView.this, Login1.class);
 
                 startActivity(i);
             }

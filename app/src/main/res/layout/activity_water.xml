@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hunny.fitnesspoint.Water"
+    android:background="#7b3939">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:background="@drawable/default_theme"
+        android:weightSum="3"
+        android:id="@+id/default_theme">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:onClick="Back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:text="Water"
+            android:layout_weight="2.5"/>
+    </LinearLayout>
+
+
+    <cn.fanrunqi.waveprogress.WaveProgressView
+        android:id="@+id/waveProgressbar"
+        android:background="@drawable/inline1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/default_theme"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/default_theme"
+        android:background="@drawable/glass_outline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#f0f0f0"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_add"
+            android:padding="18dp"
+            android:id="@+id/add"
+            android:background="@drawable/circle"
+            android:layout_marginLeft="30dp"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water_cup"
+            android:scaleType="centerCrop"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="14dp"
+            android:id="@+id/cup"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/circle" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water_glass1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="12dp"
+            android:background="@drawable/circle"
+            android:id="@+id/juice"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/button">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:layout_marginLeft="50dp"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100ml"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="200ml"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:id="@+id/button1"
+        android:layout_marginTop="25dp">
+
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water1"
+            android:padding="20dp"
+            android:background="@drawable/circle"
+            android:id="@+id/glass"
+            android:layout_marginLeft="30dp"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water_shake"
+            android:padding="13dp"
+            android:id="@+id/shake"
+            android:background="@drawable/circle"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water"
+            android:padding="12dp"
+            android:id="@+id/bottle"
+            android:background="@drawable/circle"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"/>
+
+        .
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text1"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/button1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="300ml"
+            android:layout_marginLeft="50dp"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="400ml"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500ml"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text1"
+        android:layout_marginTop="25dp"
+        android:id="@+id/button2">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water_jug"
+            android:padding="15dp"
+            android:id="@+id/mug"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle"
+            android:layout_marginLeft="30dp"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/water_jug1"
+            android:paddingTop="15dp"
+            android:paddingBottom="11dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="15dp"
+            android:id="@+id/jug"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/button2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="700ml"
+            android:layout_marginLeft="50dp"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 Ltr"
+            android:textSize="15dp"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
