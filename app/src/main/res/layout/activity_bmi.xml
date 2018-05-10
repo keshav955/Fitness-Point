@@ -61,8 +61,8 @@
         <EditText
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:hint="0 Cm"
-            android:background="#fff"
+            android:hint="  0 Cm"
+            android:background="@drawable/stroke"
             android:padding="5dp"
             android:maxLength="5"
             android:focusable="false"
@@ -107,8 +107,8 @@
         <EditText
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:hint="0  Kg"
-            android:background="#fff"
+            android:hint="  0  Kg"
+            android:background="@drawable/stroke"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"

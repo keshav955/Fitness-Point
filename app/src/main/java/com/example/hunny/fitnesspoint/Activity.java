@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.hunny.fitnesspoint.R;
-import com.triggertrap.seekarc.SeekArc;
 
 public class Activity extends AppCompatActivity {
 

@@ -58,14 +58,14 @@
     <me.itangqi.waveloadingview.WaveLoadingView
         android:id="@+id/waveLoadingView"
         android:layout_below="@+id/default_theme"
-        android:layout_width="275dp"
-        android:layout_height="275dp"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
         android:layout_centerHorizontal="true"
         app:wlv_borderColor="#97b1a6a6"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        app:wlv_borderWidth="3dp"
+        app:wlv_borderWidth="2dp"
         app:wlv_progressValue="40"
         app:wlv_shapeType="circle"
         app:wlv_titleCenterStrokeColor="@android:color/darker_gray"
@@ -79,8 +79,123 @@
         app:wlv_wave_background_Color="#24ffffff"
         app:wlv_waveColor="#5dfa01"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/waveLoadingView"
+            android:id="@+id/name">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="PROTEIN"
+                android:textSize="12dp"
+                android:gravity="center"/>
 
-    <android.support.design.widget.FloatingActionButton
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="CARBS"
+                android:textSize="12dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="FAT"
+                android:textSize="12dp"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/name"
+            android:id="@+id/progress">
+
+        <ProgressBar
+            android:id="@+id/protein_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/round_progress"/>
+
+            <ProgressBar
+                android:id="@+id/crabs_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/round_progress"/>
+            <ProgressBar
+                android:id="@+id/fats_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/round_progress"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="0dp"
+            android:layout_below="@+id/progress"
+            android:id="@+id/percent">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="50 g"
+                android:textSize="11dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="50 g"
+                android:textSize="11dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="50 g"
+                android:textSize="11dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/food"
@@ -99,7 +214,7 @@
         android:visibility="gone"
         android:layout_marginBottom="120dp"/>
 
-    <android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/item"
@@ -116,7 +231,7 @@
         app:fabSize="mini"
         android:layout_marginBottom="150dp"/>
 
-    <android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/weight"
@@ -133,7 +248,7 @@
         app:fabSize="mini"
         android:layout_marginBottom="60dp"/>
 
-    <android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/add_button"
@@ -157,8 +272,9 @@
         android:clickable="true"
         android:focusable="true"/>
 
-</RelativeLayout>
 
+    </RelativeLayout>
+    <!-- Drawer Section-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -14,4 +14,15 @@
         <item>Lbs  </item>
     </string-array>
 
+    <string-array name="serving_size">
+        <item>100g   </item>
+        <item>100ml  </item>
+        <item>1 oz   </item>
+        <item>Small  </item>
+        <item>Medium </item>
+        <item>Large  </item>
+
+    </string-array>
+
+
 </resources>

@@ -24,9 +24,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.triggertrap.seekarc.SeekArc;
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -157,7 +154,8 @@ public class Weight_Fragment extends Fragment {
                     }
 
                     @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
+                    public void onNothingSelected(AdapterView<?> adapterView)
+                    {
 
                     }
                 });

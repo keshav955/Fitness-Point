@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Sign_up">
+        <activity android:name=".Main_layout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,11 +37,14 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Pie_chart" />
-        <activity android:name=".Main_layout" />
+        <activity android:name=".Sign_up" />
         <activity android:name=".Activity" />
         <activity android:name=".Search_Food_Activity" />
         <activity android:name=".BMI" />
-        <activity android:name=".Water"></activity>
+        <activity android:name=".Water" />
+        <activity android:name=".Food_Cell" />
+        <activity android:name=".Forgot_password" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

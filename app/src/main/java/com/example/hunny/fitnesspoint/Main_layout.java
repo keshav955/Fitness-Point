@@ -206,7 +206,7 @@ public class Main_layout extends AppCompatActivity {
         mWaveLoadingView.setTopTitleColor(-1);
         mWaveLoadingView.setBottomTitleSize(18);
         mWaveLoadingView.setProgressValue(Integer.valueOf(progress));
-        mWaveLoadingView.setBorderWidth(10);
+        mWaveLoadingView.setBorderWidth(6);
         mWaveLoadingView.setAmplitudeRatio(40);
         mWaveLoadingView.setTopTitleStrokeColor(Color.LTGRAY);
         mWaveLoadingView.setTopTitleStrokeWidth(1);

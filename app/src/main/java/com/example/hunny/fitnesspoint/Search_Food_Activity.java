@@ -96,6 +96,9 @@ public class Search_Food_Activity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 Food food = foodList.get(position);
                 Toast.makeText(getApplicationContext(), food.name + " is selected!", Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(Search_Food_Activity.this,Food_Cell.class);
+                startActivity(i);
             }
 
             @Override

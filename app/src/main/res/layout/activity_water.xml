@@ -36,7 +36,6 @@
             android:layout_weight="2.5"/>
     </LinearLayout>
 
-
     <cn.fanrunqi.waveprogress.WaveProgressView
         android:id="@+id/waveProgressbar"
         android:background="@drawable/inline1"
