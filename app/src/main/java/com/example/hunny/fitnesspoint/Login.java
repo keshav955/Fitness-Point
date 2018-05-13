@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -172,6 +173,23 @@ public class Login extends AppCompatActivity {
 
             return;
         }
+
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        auth.signInWithEmailAndPassword(email , password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful())
+                {
+                    startActivity(new Intent(Login.this , com.example.hunny.fitnesspoint.Main_layout.class));
+
+                    finish();
+                }
+
+            }
+        });
 
 
     }

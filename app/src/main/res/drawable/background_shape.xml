@@ -5,7 +5,7 @@
     <item android:top="300dp"
         android:bottom="-200dp"
         android:left="0dp"
-        android:right="-300dp">
+        android:right="-400dp">
         <rotate
             android:fromDegrees="-20"
             android:pivotX="0%"
@@ -13,7 +13,7 @@
             <shape
                 android:shape="rectangle">
                 <solid
-                    android:color="#ffffff"/>
+                    android:color="#fff"/>
             </shape>
         </rotate>
     </item>

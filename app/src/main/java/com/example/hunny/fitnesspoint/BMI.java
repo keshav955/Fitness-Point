@@ -1,5 +1,6 @@
 package com.example.hunny.fitnesspoint;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -17,7 +18,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hunny.fitnesspoint.dataModel.SignUpData;
 import com.github.anastr.speedviewlib.Speedometer;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class BMI extends AppCompatActivity {
 
@@ -43,6 +50,18 @@ public class BMI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi);
 
+        final ProgressDialog pd = new ProgressDialog(BMI.this);
+
+        pd.setTitle("Fetching..");
+        pd.setMessage("Please wait ..");
+        pd.show();
+
+
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        String email = auth.getCurrentUser().getEmail().replace(".","");
+
+
         speedometer =findViewById(R.id.speedView);
         weight_et  = findViewById(R.id.weight);
         height_et  = findViewById(R.id.height);
@@ -50,6 +69,28 @@ public class BMI extends AppCompatActivity {
         measure_weight = findViewById(R.id.measure_weight);
 
         caption_txt= findViewById(R.id.caption);
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        database.getReference().child("users").child(email).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                pd.hide();
+
+                SignUpData data = dataSnapshot.getValue(SignUpData.class);
+
+                weight_et.setText(data.weight);
+                height_et.setText(data.height);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         weight_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -302,4 +343,7 @@ public class BMI extends AppCompatActivity {
         }
     }
 
+    public void Back(View view) {
+        finish();
+    }
 }

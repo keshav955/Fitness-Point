@@ -8,7 +8,7 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.flash" />
 
@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Main_layout">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,7 @@
             android:name=".Login"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Main_layout" />
         <activity android:name=".Pie_chart" />
         <activity android:name=".Sign_up" />
         <activity android:name=".Activity" />

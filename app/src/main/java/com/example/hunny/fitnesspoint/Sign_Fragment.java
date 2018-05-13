@@ -75,9 +75,10 @@ public class Sign_Fragment extends Fragment {
 
                 final Calendar cal = Calendar.getInstance();
 
-               int  year_x = cal.get(Calendar.YEAR);
+               final int  year_x = cal.get(Calendar.YEAR);
                int  month_x = cal.get(Calendar.MONTH);
                int  day_x = cal.get(Calendar.DAY_OF_MONTH);
+
 
                final String curent_date = day_x+"/"+(month_x+1)+"/"+year_x+" 00:00:00";
 
@@ -86,15 +87,17 @@ public class Sign_Fragment extends Fragment {
                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
 
 
-
                        String selected_date = i2+"/"+(i1+1)+"/"+i+" 00:00:00";
+
 
                       if( ( compare_date(curent_date , selected_date) / 365 ) >= -16 )
                       {
                           Toast.makeText(getContext(), "age must be greater than 16" , Toast.LENGTH_SHORT).show();
                       }
                       else {
-                          dob.setText(String.valueOf(i2 + "/" + (i1 + 1) + "/" + i));
+                         long a = (compare_date(selected_date , curent_date)/365);
+                         String s = String.valueOf(Long.valueOf(a));
+                          dob.setText(s);
                       }
 
 

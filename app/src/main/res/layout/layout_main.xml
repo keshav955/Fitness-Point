@@ -42,7 +42,7 @@
             android:layout_weight="2.5"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/open_profile"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:src="@drawable/pp"
@@ -55,7 +55,16 @@
 
     </LinearLayout>
 
-    <me.itangqi.waveloadingview.WaveLoadingView
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/default_theme">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <me.itangqi.waveloadingview.WaveLoadingView
         android:id="@+id/waveLoadingView"
         android:layout_below="@+id/default_theme"
         android:layout_width="210dp"
@@ -79,7 +88,7 @@
         app:wlv_wave_background_Color="#24ffffff"
         app:wlv_waveColor="#5dfa01"/>
 
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3"
@@ -116,7 +125,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3"
@@ -159,13 +168,13 @@
 
         </LinearLayout>
 
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3"
             android:layout_marginTop="0dp"
             android:layout_below="@+id/progress"
-            android:id="@+id/percent">
+            android:id="@+id/percent_layout">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -173,6 +182,7 @@
                 android:layout_weight="1"
                 android:text="50 g"
                 android:textSize="11dp"
+                android:id="@+id/protein_percent"
                 android:gravity="center"/>
 
             <TextView
@@ -182,6 +192,7 @@
                 android:layout_weight="1"
                 android:text="50 g"
                 android:textSize="11dp"
+                android:id="@+id/crabs_percent"
                 android:gravity="center"/>
 
             <TextView
@@ -191,79 +202,724 @@
                 android:layout_weight="1"
                 android:text="50 g"
                 android:textSize="11dp"
+                android:id="@+id/fats_percent"
                 android:gravity="center"/>
 
         </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/food"
-        android:src="@drawable/ic_food"
-        android:scaleX="1"
-        android:tint="#fff"
-        android:elevation="50dp"
-        android:backgroundTint="#fa6603"
-        app:borderWidth="0dp"
-        android:onClick="search_food"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="120dp"
-        android:clickable="true"
-        app:fabSize="mini"
-        android:visibility="gone"
-        android:layout_marginBottom="120dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/breakfast_Parent"
+                    android:layout_below="@+id/percent_layout"
+                    android:background="@drawable/stoke_rect">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drak_rect"
+                    android:layout_margin="1px"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/breakfast_caption_layout"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_add" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="Breakfast"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="600 Kcal"
+                        android:textSize="12dp"
+                        android:textColor="#fff"
+                        android:padding="10dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@id/breakfast_caption_layout"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200 Kcal"
+                    android:layout_below="@id/breakfast_caption_layout"
+                    android:id="@+id/consumed"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/breakfast_caption_layout"
+                    android:layout_toRightOf="@+id/consumed"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="P -"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="14"
+                        android:id="@+id/breakfast_protein"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:id="@+id/breakfast_crabs"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="F -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:id="@+id/breakfast_fats"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/breakfast_Parent"
+                android:id="@+id/morning_snack_Parent"
+                android:background="@drawable/stoke_rect">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drak_rect"
+                    android:layout_margin="1px"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/morning_caption_layout"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_add" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="Morning Snack"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="600 Kcal"
+                        android:textSize="12dp"
+                        android:textColor="#fff"
+                        android:padding="10dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@id/morning_caption_layout"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200 Kcal"
+                    android:layout_below="@id/morning_caption_layout"
+                    android:id="@+id/morning_consumed"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/morning_caption_layout"
+                    android:layout_toRightOf="@+id/morning_consumed"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="P -"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:id="@+id/morning_protein"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:id="@+id/morning_crabs"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="F -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:id="@+id/morning_fats"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                    android:visibility="gone"
+                android:layout_below="@id/morning_snack_Parent"
+                android:id="@+id/lunch_Parent"
+                android:background="@drawable/stoke_rect">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drak_rect"
+                    android:layout_margin="1px"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/lunch_caption_layout"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_add" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="Lunch"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="600 Kcal"
+                        android:textSize="12dp"
+                        android:textColor="#fff"
+                        android:padding="10dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@id/lunch_caption_layout"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200 Kcal"
+                    android:layout_below="@id/lunch_caption_layout"
+                    android:id="@+id/lunch_consumed"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lunch_caption_layout"
+                    android:layout_toRightOf="@+id/lunch_consumed"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="P -"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:id="@+id/lunch_protein"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:id="@+id/lunch_crabs"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="F -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:id="@+id/lunch_fats"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/lunch_Parent"
+                android:id="@+id/evening_Parent"
+                    android:visibility="gone"
+                android:background="@drawable/stoke_rect">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drak_rect"
+                    android:layout_margin="1px"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/evening_caption_layout"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_add" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="Evening Snack"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="600 Kcal"
+                        android:textSize="12dp"
+                        android:textColor="#fff"
+                        android:padding="10dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@id/evening_caption_layout"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200 Kcal"
+                    android:layout_below="@id/evening_caption_layout"
+                    android:id="@+id/evening_consumed"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/evening_caption_layout"
+                    android:layout_toRightOf="@+id/evening_consumed"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="P -"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:id="@+id/evening_protein"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:id="@+id/evening_crabs"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="F -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:id="@+id/evening_fats"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                android:layout_below="@id/evening_Parent"
+                android:id="@+id/dinner_Parent"
+                    android:visibility="gone"
+                android:background="@drawable/stoke_rect">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/drak_rect"
+                    android:layout_margin="1px"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/dinner_caption_layout"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_add" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:text="Dinner"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="600 Kcal"
+                        android:textSize="12dp"
+                        android:textColor="#fff"
+                        android:padding="10dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@id/dinner_caption_layout"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200 Kcal"
+                    android:layout_below="@id/dinner_caption_layout"
+                    android:id="@+id/dinner_consumed"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dinner_caption_layout"
+                    android:layout_toRightOf="@+id/dinner_consumed"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="P -"
+                        android:textColor="#fff"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16"
+                        android:id="@+id/dinner_protein"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:id="@+id/dinner_crabs"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="F -"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:id="@+id/dinner_fats"
+                        android:textColor="#fff"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_add"
+                    android:id="@+id/visible_view"
+                    android:layout_below="@id/morning_snack_Parent"
+                    android:background="@drawable/circle"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"/>
+
+            </RelativeLayout>
+
+        </ScrollView>
 
         <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item"
-        android:src="@drawable/water"
-        android:tint="#fff"
-        android:elevation="50dp"
-        android:backgroundTint="#fa6603"
-        app:borderWidth="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:clickable="true"
-        android:visibility="gone"
-        app:fabSize="mini"
-        android:layout_marginBottom="150dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/food"
+            android:src="@drawable/ic_food"
+            android:scaleX="1"
+            android:tint="#fff"
+            android:elevation="50dp"
+            android:backgroundTint="#fa6603"
+            app:borderWidth="0dp"
+            android:onClick="search_food"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="120dp"
+            android:clickable="true"
+            app:fabSize="mini"
+            android:visibility="gone"
+            android:layout_marginBottom="120dp"/>
 
         <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/weight"
-        android:src="@drawable/ic_weight_scale"
-        android:tint="#fff"
-        android:elevation="50dp"
-        android:backgroundTint="#fa6603"
-        app:borderWidth="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="160dp"
-        android:clickable="true"
-        android:visibility="gone"
-        app:fabSize="mini"
-        android:layout_marginBottom="60dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item"
+            android:src="@drawable/water"
+            android:tint="#fff"
+            android:elevation="50dp"
+            android:backgroundTint="#fa6603"
+            app:borderWidth="0dp"
+            android:onClick="open_water"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:clickable="true"
+            android:visibility="gone"
+            app:fabSize="mini"
+            android:layout_marginBottom="150dp"/>
 
         <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_button"
-        android:src="@drawable/ic_add"
-        android:elevation="50dp"
-        android:backgroundTint="#fa6603"
-        app:borderWidth="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:clickable="true"
-        app:fabSize="normal"
-        android:layout_marginBottom="30dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weight"
+            android:src="@drawable/ic_weight_scale"
+            android:tint="#fff"
+            android:elevation="50dp"
+            android:onClick="open_bmi"
+            android:backgroundTint="#fa6603"
+            app:borderWidth="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="160dp"
+            android:clickable="true"
+            android:visibility="gone"
+            app:fabSize="mini"
+            android:layout_marginBottom="60dp"/>
 
-    <View
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_button"
+            android:src="@drawable/ic_add"
+            android:elevation="50dp"
+            android:backgroundTint="#fa6603"
+            app:borderWidth="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:clickable="true"
+            app:fabSize="normal"
+            android:layout_marginBottom="30dp"/>
+
+
+        <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#7e000000"
@@ -272,14 +928,13 @@
         android:clickable="true"
         android:focusable="true"/>
 
-
     </RelativeLayout>
     <!-- Drawer Section-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#faf8ed"
+        android:background="#fff"
         android:layout_gravity="left">
 
         <RelativeLayout

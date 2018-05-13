@@ -12,10 +12,12 @@ import java.util.List;
 
 public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.MyViewHolder> {
 
+
     private List<Food> foodsList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, serving, calorie;
+      //  public float protein,crabs,fats;
 
         public MyViewHolder(View view) {
             super(view);
@@ -44,6 +46,10 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.MyViewHolder
         Food food = foodsList.get(position);
 
         holder.name.setText(String.valueOf(food.name));
+/*
+        holder.protein = food.protein;
+        holder.crabs = food.crabs;
+        holder.fats = food.fats;*/
 
         if(String.valueOf(food.serving).equals("qty"))
         {

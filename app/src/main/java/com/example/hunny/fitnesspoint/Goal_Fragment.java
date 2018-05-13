@@ -47,13 +47,43 @@ public class Goal_Fragment extends Fragment {
 
                 RadioButton goal_id = v.findViewById(id);
 
-                goal = goal_id.getText().toString();
-
-                Toast.makeText(getContext(),goal,Toast.LENGTH_SHORT).show();
+                goal = goal_id.getText().toString().replace(" ","");
 
             }
         });
         return v;
     }
+
+    @Override
+    public void onResume() {
+        RadioButton lose = v.findViewById(R.id.lose_weight);
+        RadioButton maintain = v.findViewById(R.id.maintain_weight);
+        RadioButton gain = v.findViewById(R.id.gain_weight);
+        RadioButton lean = v.findViewById(R.id.lean_muscle_mass);
+
+        super.onResume();
+
+        if(Sign_up.goal != null)
+        {
+            if(Sign_up.gender.equals("LoseWeight"))
+            {
+                lose.setChecked(true);
+            }
+            if(Sign_up.gender.equals("GainWeight"))
+            {
+                gain.setChecked(true);
+            }
+            if(Sign_up.gender.equals("MaintainWeight"))
+            {
+                maintain.setChecked(true);
+            }
+            else
+            {
+                lean.setChecked(true);
+            }
+        }
+
+    }
+
 
 }

@@ -9,6 +9,7 @@
         android:maxLength="3"
         android:id="@+id/add_water"
         android:singleLine="true"
+        android:inputType="number"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

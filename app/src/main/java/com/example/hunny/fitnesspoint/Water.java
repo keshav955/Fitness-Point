@@ -1,6 +1,8 @@
 package com.example.hunny.fitnesspoint;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.hunny.fitnesspoint.dataModel.SignUpData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import cn.fanrunqi.waveprogress.WaveProgressView;
 import me.itangqi.waveloadingview.WaveLoadingView;
@@ -16,7 +26,6 @@ import me.itangqi.waveloadingview.WaveLoadingView;
 public class Water extends AppCompatActivity {
 
     WaveProgressView waveProgressbar;
-    WaveLoadingView mWaveLoadingView;
 
     ImageView add,cup,juice,glass,shake,bottle,mug,jug;
 
@@ -33,10 +42,52 @@ public class Water extends AppCompatActivity {
 
     int current = 0;
 
+    String litre ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water);
+
+      /*  final  ProgressDialog pd = new ProgressDialog(Water.this);
+
+        pd.setTitle("Fetching..");
+        pd.setMessage("Please wait ..");
+        pd.show();
+
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        String email = auth.getCurrentUser().getEmail().replace(".","");
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        database.getReference().child("users").child(email).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                pd.hide();
+
+                SignUpData data = dataSnapshot.getValue(SignUpData.class);
+
+                gender = data.gender;
+
+                age = Integer.parseInt(data.dob);
+
+                weight = Integer.parseInt(data.weight);
+
+                activity= data.activity;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+*/
+
+        SharedPreferences sp = getSharedPreferences("app_data" , MODE_PRIVATE);
+
+       current = sp.getInt("water_consumption" , 0);
 
         waveProgressbar = findViewById(R.id.waveProgressbar);
         add = findViewById(R.id.add);
@@ -50,7 +101,7 @@ public class Water extends AppCompatActivity {
 
         int water = calculate_intake();
 
-        final String litre = String.valueOf(water);
+        litre = String.valueOf(water);
 
         waveProgressbar.setCurrent( current,litre + "ml"); // 77, "788M/1024M"
         waveProgressbar.setMaxProgress(water);
@@ -66,7 +117,7 @@ public class Water extends AppCompatActivity {
 
                 View view1 = LayoutInflater.from(Water.this).inflate(R.layout.input_water,null);
 
-                EditText add = view1.findViewById(R.id.add_water);
+                final EditText add = view1.findViewById(R.id.add_water);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(Water.this);
                 builder.setMessage("Input Water Intake");
@@ -74,7 +125,8 @@ public class Water extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
-
+                          int text = Integer.parseInt(add.getText().toString());
+                          add_to_current(text);
                     }
                 });
 
@@ -97,56 +149,74 @@ public class Water extends AppCompatActivity {
         cup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 100;
-                waveProgressbar.setCurrent(current,litre +"ml");
+
+                add_to_current(100);
             }
         });
 
         juice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 200;
-                waveProgressbar.setCurrent(current,litre +"ml");
+
+                add_to_current(200);
             }
         });
         glass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 300;
-                waveProgressbar.setCurrent(current,litre +"ml");
+
+                add_to_current(300);
             }
         });
         shake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 400;
-                waveProgressbar.setCurrent(current,litre +"ml");
+                add_to_current(400);
+
             }
         });
         bottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 500;
-                waveProgressbar.setCurrent(current,litre +"ml");
+                add_to_current(500);
+
             }
         });
         mug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 700;
-                waveProgressbar.setCurrent(current,litre +"ml");
+
+                add_to_current(700);
+
             }
         });
         jug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current = current + 1000;
-                waveProgressbar.setCurrent(current,litre +"ml");
+                add_to_current(1000);
             }
         });
 
 
 
+    }
+
+
+    private void add_to_current(int quantity)
+    {
+        if (current>= Integer.parseInt(litre))
+        {
+            Toast.makeText(Water.this,"You have reached your todays threshold",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        current = current + quantity;
+
+        SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
+
+        shared_preference.putInt("water_consumption" , current).commit();
+
+
+        waveProgressbar.setCurrent(current,litre +"ml");
     }
 
     public int calculate_intake()

@@ -85,6 +85,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="30dp"
+                    card_view:cardElevation="20dp"
                     android:orientation="vertical"
                     android:id="@+id/occationally"
                     android:gravity="center_horizontal">
@@ -151,6 +152,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
+                    card_view:cardElevation="20dp"
                     android:id="@+id/active"
                     android:layout_below="@+id/occationally">
 
@@ -170,7 +172,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:background="#43201f1f"/>
+                        android:background="#76201f1f"/>
 
 
                 <TextView
@@ -214,6 +216,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="15dp"
+                    card_view:cardElevation="20dp"
                     android:id="@+id/beast_mode"
                     android:layout_below="@+id/active">
 

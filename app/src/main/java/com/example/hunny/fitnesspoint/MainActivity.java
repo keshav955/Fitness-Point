@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
 
     ImageView bicep;
@@ -43,11 +45,24 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             @Override
             public void run() {
 
-                Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                startActivity(i);
+                if(auth.getCurrentUser() != null)
+                {
+                    Intent i = new Intent(MainActivity.this,Main_layout.class);
 
-                finish();
+                    startActivity(i);
+
+                    finish();
+                }
+
+                else {
+                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
+
+                    startActivity(i);
+
+                    finish();
+                }
             }
         };
 

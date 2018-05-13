@@ -15,6 +15,11 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.hunny.fitnesspoint.RecycleView.Food;
 import com.example.hunny.fitnesspoint.RecycleView.FoodsAdapter;
 import com.example.hunny.fitnesspoint.RecycleView.RecyclerTouchListener;
@@ -24,12 +29,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.client.android.CaptureActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Search_Food_Activity extends AppCompatActivity {
 
     String TAG;
+
+    public String calorie,protein,crabs,fats,food_name,serving;
 
     private List<Food> foodList = new ArrayList<>();
 
@@ -95,9 +105,25 @@ public class Search_Food_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Food food = foodList.get(position);
+
+                calorie = String.valueOf(food.calorie);
+                protein = String.valueOf(food.protein);
+                crabs = String.valueOf(food.carbs);
+                fats = String.valueOf(food.fats);
+                food_name = String.valueOf(food.name);
+                serving = String.valueOf(food.serving);
+
                 Toast.makeText(getApplicationContext(), food.name + " is selected!", Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(Search_Food_Activity.this,Food_Cell.class);
+
+                i.putExtra("calorieKey",calorie);
+                i.putExtra("proteinKey",protein);
+                i.putExtra("crabKey",crabs);
+                i.putExtra("fatsKey",fats);
+                i.putExtra("nameKey",food_name);
+                i.putExtra("servingKey",serving);
+
                 startActivity(i);
             }
 
@@ -112,16 +138,90 @@ public class Search_Food_Activity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 Log.d(TAG, "contents: " + contents);
                 Toast.makeText(Search_Food_Activity.this, "contents: " + contents, Toast.LENGTH_SHORT).show();
+
+                get_food_data(contents);
+
             } else if (resultCode == RESULT_CANCELED) {
                 Log.d(TAG, "RESULT_CANCELED");
                 Toast.makeText(Search_Food_Activity.this, " RESULT_CANCELED ", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void get_food_data(String food_id)
+    {
+        final  ProgressDialog pd = new ProgressDialog(Search_Food_Activity.this);
+
+        pd.setTitle("Fetching Food Info..");
+        pd.setMessage("Please wait ..");
+        pd.show();
+
+        System.out.println("barcode is calling *************** ");
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "https://world.openfoodfacts.org/api/v0/product/" + food_id + ".json", new JSONObject(), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                System.out.println("barcode response is *************** "+response);
+
+                pd.hide();
+
+                try {
+                    if(response.getString("status_verbose").equals("product not found"))
+                    {
+                        Toast.makeText(Search_Food_Activity.this,"product not found",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                       JSONObject nutrients = response.getJSONObject("product").getJSONObject("nutriments");
+
+                       double protein = nutrients.getDouble("proteins");
+
+                       String crab_s = nutrients.getString("carbohydrates_value");
+
+                       String fat_s = nutrients.getString("fat_value");
+
+                       double crabs = Double.parseDouble(crab_s);
+                       double fats = Double.parseDouble(fat_s);
+
+                       double calories =  (protein * 4) + (crabs * 4) + (fats * 4);
+
+                       Intent i = new Intent(Search_Food_Activity.this,Food_Cell.class);
+
+                        i.putExtra("calorieKey",String.valueOf(calories));
+                        i.putExtra("proteinKey",String.valueOf(protein));
+                        i.putExtra("crabKey",String.valueOf(crabs));
+                        i.putExtra("fatsKey",String.valueOf(fats));
+
+                        startActivity(i);
+                    }
+
+                    System.out.println(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println("barcode response error is"+error);
+
+
+            }
+        });
+
+        Volley.newRequestQueue(Search_Food_Activity.this).add(jsonObjectRequest);
+
+
+
     }
 
     private void prepareFoodData() {

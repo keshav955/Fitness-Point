@@ -54,18 +54,6 @@
         android:text=""
         android:textStyle="bold"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_food"
-        android:layout_below="@id/theme"
-        android:layout_marginTop="60dp"
-        android:text="ADD"
-        android:textColor="#333"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/stoke_rect"/>
-
     <at.grabner.circleprogress.CircleProgressView
             android:id="@+id/circleView"
             android:layout_width="100dp"
@@ -116,7 +104,6 @@
         android:textColor="#fff"
         android:textSize="15dp"/>
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,7 +126,8 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#f4482b"
+        android:id="@+id/add_food"
+        android:backgroundTint="#f5541e"
         app:borderWidth="0dp"
         app:fabSize="normal"
         android:layout_below="@+id/name_layout"
@@ -263,6 +251,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="300 kcal"
+                        android:id="@+id/food_calorie"
                         android:textSize="15dp"
                         android:layout_gravity="right"
                         android:textStyle="italic"/>
@@ -273,6 +262,7 @@
                         android:text="10.4 g"
                         android:layout_marginTop="10dp"
                         android:textSize="15dp"
+                        android:id="@+id/food_protein"
                         android:layout_gravity="right"
                         android:textStyle="italic"/>
 
@@ -282,6 +272,7 @@
                         android:text="31.5 g"
                         android:layout_marginTop="10dp"
                         android:textSize="15dp"
+                        android:id="@+id/food_crabs"
                         android:layout_gravity="right"
                         android:textStyle="italic"/>
                     <TextView
@@ -291,6 +282,7 @@
                         android:layout_marginTop="10dp"
                         android:textSize="15dp"
                         android:layout_gravity="right"
+                        android:id="@+id/food_fats"
                         android:textStyle="italic"/>
 
                 </LinearLayout>
@@ -302,7 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/nutrition_label"
                 android:layout_marginTop="20dp"
-                android:text="Percentage Based Daily Goals"
+                android:text="Calories from Macronutrient"
                 android:layout_marginBottom="15dp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/caption"

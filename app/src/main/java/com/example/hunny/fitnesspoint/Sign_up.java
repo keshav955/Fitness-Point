@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -31,10 +33,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hunny.fitnesspoint.dataModel.SignUpData;
+import com.google.android.gms.common.oob.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
@@ -45,11 +53,16 @@ public class Sign_up extends AppCompatActivity {
     public static Sign_up sign_up_activity;
     Button btn;
     EditText editText_dob;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 0;
     EditText editText_et;
 
     String ht,wt;
 
+    Uri profile_image_uri ;
+
+    Boolean image_selected = false;
+
+    ImageView image_view ;
     NumberPicker kg,lbs,select_measure;
 
 
@@ -71,6 +84,9 @@ public class Sign_up extends AppCompatActivity {
         sign_up_activity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        image_view = findViewById(R.id.profile_image);
+
 
         FragmentManager fm = getSupportFragmentManager();
 
@@ -200,6 +216,13 @@ public class Sign_up extends AppCompatActivity {
                 return;
             }
 
+            if(! image_selected)
+            {
+                Toast.makeText(Sign_up.this,"Please select profile image",Toast.LENGTH_LONG).show();
+
+                return;
+            }
+
             RadioButton radioButton = findViewById( selected_gender.getCheckedRadioButtonId());
 
             gender = radioButton.getText().toString();
@@ -226,9 +249,15 @@ public class Sign_up extends AppCompatActivity {
         {
             final RadioGroup selected_goal = findViewById(R.id.goal);
 
+            if (selected_goal.getCheckedRadioButtonId() == -1)
+            {
+                Toast.makeText(Sign_up.this,"Please Select Goal",Toast.LENGTH_LONG).show();
+                return;
+            }
+
             RadioButton radioButton = findViewById( selected_goal.getCheckedRadioButtonId());
 
-            goal = radioButton.getText().toString();
+            goal = radioButton.getText().toString().replace(" ","");
 
             FragmentManager fm1 = getSupportFragmentManager();
 
@@ -256,9 +285,17 @@ public class Sign_up extends AppCompatActivity {
                  EditText weight_et = findViewById(R.id.weight);
 
                 height = height_et.getText().toString();
-
                 weight = weight_et.getText().toString();
 
+                if (height.equals("")) {
+                    height_et.setError("Please Enter Height First");
+                    return;
+                }
+
+                if (weight.equals("")) {
+                    weight_et.setError("Please enter Weight First");
+                    return;
+                }
                 save_authentication_data();
 
                 if (currentStep < stepView.getStepCount() - 1) {
@@ -267,7 +304,6 @@ public class Sign_up extends AppCompatActivity {
                 } else {
                     stepView.done(true);
                 }
-
             }
 
     }
@@ -345,7 +381,43 @@ public class Sign_up extends AppCompatActivity {
 
     public void profile_image(View view)
     {
-        dispatchTakePictureIntent();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Sign_up.this);
+        View view1 = LayoutInflater.from(Sign_up.this).inflate(R.layout.input_picture,null);
+
+        LinearLayout camera,gallary;
+
+        camera = view1.findViewById(R.id.camera);
+        gallary = view1.findViewById(R.id.gallary);
+
+        builder.setView(view1);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dispatchTakePictureIntent();
+
+                dialog.dismiss();
+
+            }
+        });
+
+        gallary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 1);
+
+                dialog.dismiss();
+            }
+        });
+
 
        /* Intent i = new Intent(
                 Intent.ACTION_PICK,
@@ -357,25 +429,45 @@ public class Sign_up extends AppCompatActivity {
 
     private void dispatchTakePictureIntent() {
 
-        Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        if(i.resolveActivity(getPackageManager()) != null)
-        {
-            startActivityForResult(i, REQUEST_IMAGE_CAPTURE);
-        }
+        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePicture, 0);//zero can be replaced with any action code
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case 0:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = data.getData();
+                    image_view.setImageURI(selectedImage);
+
+                    image_selected = true;
+
+                    profile_image_uri = selectedImage;
+                }
+
+                break;
+            case 1:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = data.getData();
+                    image_view.setImageURI(selectedImage);
+
+                    image_selected = true;
+
+                    profile_image_uri = selectedImage;
+                }
+                break;
+        }
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             Bundle extras = data.getExtras();
 
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            ImageView image_view = findViewById(R.id.profile_image);
+
 
             image_view.setImageBitmap(imageBitmap);
         }
@@ -403,13 +495,12 @@ public class Sign_up extends AppCompatActivity {
         }
     }*/
 
-
-
     public void save_authentication_data()
     {
         final ProgressDialog progress = new ProgressDialog(Sign_up.this);
         progress.setTitle("Please Wait");
         progress.setMessage("Creating Account....");
+        progress.setCanceledOnTouchOutside(false);
         progress.show();
 
         FirebaseAuth authenticate = FirebaseAuth.getInstance();
@@ -421,8 +512,6 @@ public class Sign_up extends AppCompatActivity {
                 if (task.isSuccessful())
                 {
                     save_profile_data();
-
-                    Toast.makeText(Sign_up.this, "done", Toast.LENGTH_SHORT).show();
                 }
                 else
                     {
@@ -435,22 +524,45 @@ public class Sign_up extends AppCompatActivity {
         authenticate.createUserWithEmailAndPassword(email, password).addOnCompleteListener(listener);
 
     }
-
-
     public void save_profile_data()
     {
-        SignUpData data = new SignUpData(name ,email , password , goal , gender, dob, weight, height );
+        SignUpData data = new SignUpData(name ,email , password , goal , gender, dob, weight, height ,"Beast Mode" );
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        uploadFile(profile_image_uri);
 
         database.getReference().child("users").child(email.replace(".","")).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+
+                Toast.makeText(Sign_up.this, "done", Toast.LENGTH_SHORT).show();
+
                 Intent i = new Intent(Sign_up.this, Activity.class);
                 startActivity(i);
             }
         });
+    }
 
+    public void uploadFile(Uri uri) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference mountainImagesRef = storageRef.child("images/" + email.replace(".","") + ".jpg");
+
+
+        UploadTask uploadTask = mountainImagesRef.putFile(uri);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+            }
+        });
 
     }
 }

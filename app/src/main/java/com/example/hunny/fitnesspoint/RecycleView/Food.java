@@ -5,7 +5,7 @@ package com.example.hunny.fitnesspoint.RecycleView;
  */
 public class Food {
     public String name,serving;
-    public float calorie,protein,crabs, fats;
+    public float calorie,protein,carbs,fats;
 
     public Food() {
     }
@@ -14,7 +14,7 @@ public class Food {
         this.name = name;
         this.calorie = calorie;
         this.protein = protein;
-        this.crabs = crabs;
+        this.carbs = crabs;
         this.fats = fats;
         this.serving = serving;
     }

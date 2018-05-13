@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -228,5 +229,25 @@ public class Weight_Fragment extends Fragment {
                 caption_txt.setText(" Extremly Obesed");
             }
         }
+
+    @Override
+    public void onResume() {
+
+
+        super.onResume();
+
+        if(Sign_up.weight != null)
+        {
+            weight_et.setText(Sign_up.weight);
+        }
+
+        if(Sign_up.height != null)
+        {
+            height_et.setText(Sign_up.height);
+        }
+
+
+    }
+
 
 }

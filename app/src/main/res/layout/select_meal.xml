@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/selectableItemBackground"
+        android:text="Breakfast"
+        android:id="@+id/add_breakfast"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/selectableItemBackground"
+        android:text="Morning Snack"
+        android:textAllCaps="false"
+        android:id="@+id/add_morning_snack"
+        android:layout_marginTop="1dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/selectableItemBackground"
+        android:text="Lunch"
+        android:textAllCaps="false"
+        android:id="@+id/add_lunch"
+        android:layout_marginTop="1dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/selectableItemBackground"
+        android:text="Evening Snack"
+        android:id="@+id/add_evening_snack"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/selectableItemBackground"
+        android:text="Dinner"
+        android:id="@+id/add_dinner"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+
+
+
+</LinearLayout>
