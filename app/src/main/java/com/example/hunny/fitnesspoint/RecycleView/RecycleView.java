@@ -31,7 +31,7 @@ public class RecycleView extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new FoodsAdapter(foodList);
+        mAdapter = new FoodsAdapter(foodList , RecycleView.this);
 
         recyclerView.setHasFixedSize(true);
 
@@ -54,19 +54,6 @@ public class RecycleView extends AppCompatActivity {
 
         recyclerView.setAdapter(mAdapter);
 
-        // row click listener
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Food food = foodList.get(position);
-                Toast.makeText(getApplicationContext(), food.name + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
 
         prepareFoodData();
     }

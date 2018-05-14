@@ -1,12 +1,18 @@
 package com.example.hunny.fitnesspoint.RecycleView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hunny.fitnesspoint.Food_Cell;
 import com.example.hunny.fitnesspoint.R;
+import com.example.hunny.fitnesspoint.Search_Food_Activity;
 
 import java.util.List;
 
@@ -15,9 +21,13 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.MyViewHolder
 
     private List<Food> foodsList;
 
+    private Context context ;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, serving, calorie;
       //  public float protein,crabs,fats;
+
+        public RelativeLayout food_cell ;
 
         public MyViewHolder(View view) {
             super(view);
@@ -25,12 +35,14 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.MyViewHolder
             name = (TextView) view.findViewById(R.id.name);
             serving = (TextView) view.findViewById(R.id.serving);
             calorie = (TextView) view.findViewById(R.id.calorie);
+            food_cell = view.findViewById(R.id.food_cell);
         }
     }
 
 
-    public FoodsAdapter(List<Food> foodsList) {
+    public FoodsAdapter(List<Food> foodsList , Context context) {
         this.foodsList = foodsList;
+        this.context = context;
     }
 
     @Override
@@ -43,7 +55,7 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Food food = foodsList.get(position);
+        final Food food = foodsList.get(position);
 
         holder.name.setText(String.valueOf(food.name));
 /*
@@ -65,6 +77,28 @@ public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.MyViewHolder
         }
 
         holder.calorie.setText(String.valueOf("Calorie -"+food.calorie));
+
+
+        holder.food_cell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                Intent i = new Intent(context,Food_Cell.class);
+
+                i.putExtra("calorieKey",String.valueOf(food.calorie));
+                i.putExtra("proteinKey",String.valueOf(food.protein));
+                i.putExtra("crabKey",String.valueOf(food.carbs));
+                i.putExtra("fatsKey",String.valueOf(food.fats));
+                i.putExtra("nameKey",String.valueOf(food.name));
+                i.putExtra("servingKey",String.valueOf(food.serving));
+
+                context.startActivity(i);
+
+            }
+        });
+
     }
 
     @Override

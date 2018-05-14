@@ -59,7 +59,7 @@ public class Search_Food_Activity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new FoodsAdapter(searched_foodlist);
+        mAdapter = new FoodsAdapter(searched_foodlist , Search_Food_Activity.this);
 
         recyclerView.setHasFixedSize(true);
 
@@ -67,13 +67,13 @@ public class Search_Food_Activity extends AppCompatActivity {
 
         search_bar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
+            public boolean onQueryTextSubmit(String s)
+            {
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-
 
                 filter_data(s);
 
@@ -101,37 +101,9 @@ public class Search_Food_Activity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         // row click listener
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Food food = foodList.get(position);
 
-                calorie = String.valueOf(food.calorie);
-                protein = String.valueOf(food.protein);
-                crabs = String.valueOf(food.carbs);
-                fats = String.valueOf(food.fats);
-                food_name = String.valueOf(food.name);
-                serving = String.valueOf(food.serving);
 
-                Toast.makeText(getApplicationContext(), food.name + " is selected!", Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(Search_Food_Activity.this,Food_Cell.class);
-
-                i.putExtra("calorieKey",calorie);
-                i.putExtra("proteinKey",protein);
-                i.putExtra("crabKey",crabs);
-                i.putExtra("fatsKey",fats);
-                i.putExtra("nameKey",food_name);
-                i.putExtra("servingKey",serving);
-
-                startActivity(i);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
 
         prepareFoodData();
     }
@@ -238,7 +210,6 @@ public class Search_Food_Activity extends AppCompatActivity {
                     foodList.add(data);
                 }
 
-                mAdapter.notifyDataSetChanged();
 
             }
 

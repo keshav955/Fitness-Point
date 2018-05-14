@@ -36,6 +36,34 @@
             android:layout_weight="2.5"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/waveProgressbar"
+        android:gravity="center_horizontal"
+        android:padding="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consumed - "
+        android:textSize="17dp"
+        android:textColor="#252525"
+        android:layout_marginTop="10dp"
+        android:id="@+id/txt_consumed"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="17dp"
+        android:textColor="#fff"
+        android:layout_marginTop="10dp"
+        android:id="@+id/consumed"
+        android:textStyle="bold" />
+    </LinearLayout>
+
+
     <cn.fanrunqi.waveprogress.WaveProgressView
         android:id="@+id/waveProgressbar"
         android:background="@drawable/inline1"
@@ -43,14 +71,14 @@
         android:layout_height="150dp"
         android:layout_below="@id/default_theme"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"/>
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_below="@id/default_theme"
         android:background="@drawable/glass_outline"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#f0f0f0"/>
 
     <RelativeLayout

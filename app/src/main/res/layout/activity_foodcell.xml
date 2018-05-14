@@ -132,7 +132,7 @@
         app:fabSize="normal"
         android:layout_below="@+id/name_layout"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:src="@drawable/ic_add" />
 
@@ -152,7 +152,7 @@
                 android:id="@+id/serving_layout"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="100dp"
                 android:weightSum="3">
 
                 <EditText

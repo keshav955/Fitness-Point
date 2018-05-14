@@ -1,7 +1,10 @@
 package com.example.hunny.fitnesspoint;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hunny.fitnesspoint.dataModel.SignUpData;
@@ -19,6 +23,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import cn.fanrunqi.waveprogress.WaveProgressView;
 import me.itangqi.waveloadingview.WaveLoadingView;
@@ -29,13 +36,15 @@ public class Water extends AppCompatActivity {
 
     ImageView add,cup,juice,glass,shake,bottle,mug,jug;
 
-    int weight = 76;
+    int weight ;
 
-    int age = 20;
+    int age ,water;
 
-    String gender = "male";
+    String gender ;
 
-    String activity = "beast_mode";
+    String activity ;
+
+    TextView consumed;
 
     public String mWaveColor = "#FF07ADFA";
     public String mTextColor = "#4b4949";
@@ -49,7 +58,9 @@ public class Water extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water);
 
-      /*  final  ProgressDialog pd = new ProgressDialog(Water.this);
+        consumed = findViewById(R.id.consumed);
+
+        final  ProgressDialog pd = new ProgressDialog(Water.this);
 
         pd.setTitle("Fetching..");
         pd.setMessage("Please wait ..");
@@ -76,6 +87,19 @@ public class Water extends AppCompatActivity {
                 weight = Integer.parseInt(data.weight);
 
                 activity= data.activity;
+
+                 water = calculate_intake();
+
+                litre = String.valueOf(water);
+
+                waveProgressbar.setCurrent( current,litre + "ml"); // 77, "788M/1024M"
+                waveProgressbar.setMaxProgress(water);
+                waveProgressbar.setText(mTextColor,50);//"#FFFF00", 41
+                waveProgressbar.setWaveColor(mWaveColor); //"#5b9ef4"
+
+                waveProgressbar.setWave(30,200);
+                waveProgressbar.setmWaveSpeed(10);//The larger the value, the slower the vibration
+
             }
 
             @Override
@@ -83,11 +107,26 @@ public class Water extends AppCompatActivity {
 
             }
         });
-*/
+
 
         SharedPreferences sp = getSharedPreferences("app_data" , MODE_PRIVATE);
 
-       current = sp.getInt("water_consumption" , 0);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE,0);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String curentDate = df.format(c.getTime());
+
+        if(!sp.getString("date" , "").equals(curentDate))
+        {
+            SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
+
+            shared_preference.putInt("water_consumption" , 0);
+            shared_preference.putString("date" , curentDate );
+
+            shared_preference.commit();
+        }
+        current = sp.getInt("water_consumption" , 0);
+        consumed.setText(String.valueOf(sp.getInt("water_consumption",0)));
 
         waveProgressbar = findViewById(R.id.waveProgressbar);
         add = findViewById(R.id.add);
@@ -99,17 +138,6 @@ public class Water extends AppCompatActivity {
         mug = findViewById(R.id.mug);
         jug = findViewById(R.id.jug);
 
-        int water = calculate_intake();
-
-        litre = String.valueOf(water);
-
-        waveProgressbar.setCurrent( current,litre + "ml"); // 77, "788M/1024M"
-        waveProgressbar.setMaxProgress(water);
-        waveProgressbar.setText(mTextColor,50);//"#FFFF00", 41
-        waveProgressbar.setWaveColor(mWaveColor); //"#5b9ef4"
-
-        waveProgressbar.setWave(30,200);
-        waveProgressbar.setmWaveSpeed(10);//The larger the value, the slower the vibration
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,12 +239,27 @@ public class Water extends AppCompatActivity {
         }
         current = current + quantity;
 
+        consumed.setText(String.valueOf(current));
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE,0);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String curentDate = df.format(c.getTime());
+
         SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
 
-        shared_preference.putInt("water_consumption" , current).commit();
+        shared_preference.putInt("water_consumption" , current);
+        shared_preference.putString("date" , curentDate );
 
+        shared_preference.commit();
 
-        waveProgressbar.setCurrent(current,litre +"ml");
+        waveProgressbar.setCurrent(current,litre +" ml");
+
+        Intent activate = new Intent(this, AlarmReceiver.class);
+        AlarmManager alarms ;
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, activate, 0);
+        alarms = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarms.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+7200000, alarmIntent);
     }
 
     public int calculate_intake()
@@ -238,20 +281,20 @@ public class Water extends AppCompatActivity {
              water = weight*30;
         }
 
-        if(gender.equals("female"))
+        if(gender.equals("Female"))
         {
             water = water-500;
         }
 
-        if(activity.equals("beast_mode"))
+        if(activity.equals("Beast Mode"))
         {
             water = water + 700;
         }
-        if(activity.equals("offen"))
+        if(activity.equals("Desk job"))
         {
             water = water + 200;
         }
-        if(activity.equals("active"))
+        if(activity.equals("Active"))
         {
             water = water + 350;
         }

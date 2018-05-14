@@ -1,6 +1,7 @@
 package com.example.hunny.fitnesspoint;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -35,15 +36,10 @@ public class Food_Cell extends AppCompatActivity {
         setContentView(R.layout.activity_foodcell);
 
         food_name = getIntent().getStringExtra("nameKey");
-
-         serving = getIntent().getStringExtra("servingKey");
-
+        serving = getIntent().getStringExtra("servingKey");
         calorie = getIntent().getStringExtra("calorieKey");
-
         protein = getIntent().getStringExtra("proteinKey");
-
         crabs = getIntent().getStringExtra("crabKey");
-
         fats = getIntent().getStringExtra("fatsKey");
 
         serving_size = findViewById(R.id.serving_size);
@@ -102,23 +98,50 @@ public class Food_Cell extends AppCompatActivity {
                 evening_snack = view1.findViewById(R.id.add_evening_snack);
                 dinner = view1.findViewById(R.id.add_dinner);
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-
                 builder.setView(view1);
 
                 final AlertDialog dialog = builder.create();
                 dialog.show();
+
+                breakfast.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        send_data();
+                        dialog.dismiss();
+                    }
+                });
+
+                morning_snack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        send_data();
+                        dialog.dismiss();
+                    }
+                });
+                lunch.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        send_data();
+                        dialog.dismiss();
+                    }
+                });
+                evening_snack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        send_data();
+                        dialog.dismiss();
+                    }
+                });
+                dinner.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        send_data();
+                        dialog.dismiss();
+                    }
+                });
+
+
+
 
             }
         });
@@ -145,6 +168,20 @@ public class Food_Cell extends AppCompatActivity {
 
     public void Back(View view)
     {
+        finish();
+    }
+
+    public void send_data()
+    {
+        Intent i  = new Intent(Food_Cell.this, Main_layout.class);
+        i.putExtra("calorieKey" , calorie);
+        i.putExtra("proteinKey",protein);
+        i.putExtra("crabKey",crabs);
+        i.putExtra("fatsKey",fats);
+        i.putExtra("nameKey",food_name);
+        i.putExtra("servingKey",String.valueOf(serving));
+
+        startActivity(i);
         finish();
     }
 

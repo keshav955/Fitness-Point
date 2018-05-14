@@ -45,6 +45,9 @@
         <activity android:name=".Food_Cell" />
         <activity android:name=".Forgot_password" />
         <activity android:name=".ProfileActivity"></activity>
+
+        <receiver android:name=".AlarmReceiver"/>
+        <service android:name=".AlarmService"/>
     </application>
 
 </manifest>

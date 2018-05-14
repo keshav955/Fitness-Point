@@ -65,28 +65,27 @@
                 android:layout_height="match_parent">
 
                 <me.itangqi.waveloadingview.WaveLoadingView
-        android:id="@+id/waveLoadingView"
-        android:layout_below="@+id/default_theme"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
-        android:layout_centerHorizontal="true"
-        app:wlv_borderColor="#97b1a6a6"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        app:wlv_borderWidth="2dp"
-        app:wlv_progressValue="40"
-        app:wlv_shapeType="circle"
-        app:wlv_titleCenterStrokeColor="@android:color/darker_gray"
-        app:wlv_titleCenterStrokeWidth="1dp"
-        app:wlv_titleCenter="Calories"
-        app:wlv_titleCenterColor="@android:color/white"
-        app:wlv_titleCenterSize="22sp"
-        app:wlv_titleBottom="Remaining"
-        app:wlv_titleBottomColor="#fff"
-        app:wlv_waveAmplitude="50"
-        app:wlv_wave_background_Color="#24ffffff"
-        app:wlv_waveColor="#5dfa01"/>
+                    android:id="@+id/waveLoadingView"
+                    android:layout_width="210dp"
+                    android:layout_height="210dp"
+                    android:layout_centerHorizontal="true"
+                    app:wlv_borderColor="#97b1a6a6"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    app:wlv_borderWidth="2dp"
+                    app:wlv_progressValue="40"
+                    app:wlv_shapeType="circle"
+                    app:wlv_titleCenterStrokeColor="@android:color/darker_gray"
+                    app:wlv_titleCenterStrokeWidth="1dp"
+                    app:wlv_titleCenter="Calories"
+                    app:wlv_titleCenterColor="@android:color/white"
+                    app:wlv_titleCenterSize="22sp"
+                    app:wlv_titleBottom="Remaining"
+                    app:wlv_titleBottomColor="#fff"
+                    app:wlv_waveAmplitude="50"
+                    app:wlv_wave_background_Color="#24ffffff"
+                    app:wlv_waveColor="#5dfa01"/>
 
                 <LinearLayout
             android:layout_width="match_parent"
@@ -938,6 +937,7 @@
         android:layout_gravity="left">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="122dp">
 
