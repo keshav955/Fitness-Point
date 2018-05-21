@@ -3,6 +3,7 @@ package com.example.hunny.fitnesspoint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
@@ -40,17 +41,27 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     ImageView visible;
 
+    ProgressDialog pd;
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        pd = new ProgressDialog(Login.this);
 
-       final  EditText email_et = findViewById(R.id.email);
+        SharedPreferences sp = getSharedPreferences("app_data" , MODE_PRIVATE);
+
+        final  EditText email_et = findViewById(R.id.email);
        final  EditText password_et = findViewById(R.id.password);
        final  Button login = findViewById(R.id.login_button);
-                     visible = findViewById(R.id.visibility);
+
+       email_et.setText(sp.getString("email",""));
+       password_et.setText(sp.getString("password",""));
+
+        visible = findViewById(R.id.visibility);
 
                      visible.setOnClickListener(new View.OnClickListener() {
                          @Override
@@ -142,21 +153,22 @@ public class Login extends AppCompatActivity {
         TextView txt = findViewById(R.id.forgot);
         ImageView img = (ImageView)findViewById(R.id.key);
         txt.setTextColor(argb(255,63,81,181));
-
-
         img.setColorFilter(Color.argb(255, 63, 81, 181));
+
+        Intent i = new Intent(Login.this, Forgot_password.class);
+        startActivity(i);
 
     }
 
     public void login(View view) {
 
-        EditText email_et = findViewById(R.id.email);
+        final EditText email_et = findViewById(R.id.email);
 
         EditText password_et = findViewById(R.id.password);
 
-        String email = email_et.getText().toString();
+        final String email = email_et.getText().toString();
 
-        String password = password_et.getText().toString();
+        final String password = password_et.getText().toString();
 
         if(Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
@@ -174,6 +186,10 @@ public class Login extends AppCompatActivity {
             return;
         }
 
+        pd.setTitle("Authenticating ..");
+        pd.setMessage("Please wait ..");
+        pd.show();
+
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -184,8 +200,22 @@ public class Login extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     startActivity(new Intent(Login.this , com.example.hunny.fitnesspoint.Main_layout.class));
-
                     finish();
+
+                    pd.hide();
+
+                    SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
+
+                    shared_preference.putString("email" , email);
+                    shared_preference.putString("password" , password );
+
+                    shared_preference.commit();
+
+                }
+                else {
+                    pd.hide();
+
+                    Toast.makeText(Login.this,"Email Does Not Exits",Toast.LENGTH_SHORT).show();
                 }
 
             }

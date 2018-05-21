@@ -50,10 +50,14 @@ public class Search_Food_Activity extends AppCompatActivity {
 
     private SearchView search_bar ;
 
+    int caloric_intake ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_food);
+
+     //   caloric_intake = getIntent().getIntExtra("caloric_intake",0);
 
         searched_foodlist = new ArrayList<>();
 
@@ -101,9 +105,6 @@ public class Search_Food_Activity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         // row click listener
-
-
-
 
         prepareFoodData();
     }

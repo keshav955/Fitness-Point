@@ -85,6 +85,7 @@ public class Sign_up extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        mAuth = FirebaseAuth.getInstance();
         image_view = findViewById(R.id.profile_image);
 
 
@@ -111,7 +112,21 @@ public class Sign_up extends AppCompatActivity {
                 .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
                 // other state methods are equal to the corresponding xml attributes
                 .commit();
-       // step_view();
+
+
+       // int Count = getIntent().getIntExtra("count",0);
+
+        EditText email_et = findViewById(R.id.email);
+        EditText password_et = findViewById(R.id.password);
+
+
+          // String name = getIntent().getStringExtra("name");
+          //String  email = getIntent().getStringExtra("email");
+
+           // email_et.setText(name);
+           // password_et.setText(email);
+
+        // step_view();
     }
 
 
@@ -196,13 +211,12 @@ public class Sign_up extends AppCompatActivity {
             if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 
             } else {
-                Toast.makeText(Sign_up.this, "invalid email syntax", Toast.LENGTH_SHORT).show();
+                 email_et.setError("Please Enter Email");
                 return;
             }
 
             if (password.length() < 7) {
-                Toast.makeText(Sign_up.this, "password too short", Toast.LENGTH_SHORT).show();
-
+                password_et.setError("Password too short");
                 return;
             }
             if (dob.equals(""))
@@ -296,8 +310,14 @@ public class Sign_up extends AppCompatActivity {
                     weight_et.setError("Please enter Weight First");
                     return;
                 }
-                save_authentication_data();
 
+                if(mAuth.getCurrentUser() == null) {
+                    save_authentication_data();
+                }
+                else
+                {
+                    save_profile_data();
+                }
                 if (currentStep < stepView.getStepCount() - 1) {
                     currentStep++;
                     stepView.go(currentStep, true);
@@ -526,7 +546,7 @@ public class Sign_up extends AppCompatActivity {
     }
     public void save_profile_data()
     {
-        SignUpData data = new SignUpData(name ,email , password , goal , gender, dob, weight, height ,"Beast Mode" );
+        SignUpData data = new SignUpData(name ,email , password , goal , gender, dob, weight, height ,"" );
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 

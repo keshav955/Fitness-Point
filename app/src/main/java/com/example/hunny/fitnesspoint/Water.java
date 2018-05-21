@@ -108,7 +108,6 @@ public class Water extends AppCompatActivity {
             }
         });
 
-
         SharedPreferences sp = getSharedPreferences("app_data" , MODE_PRIVATE);
 
         Calendar c = Calendar.getInstance();

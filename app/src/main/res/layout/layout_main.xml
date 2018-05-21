@@ -47,10 +47,11 @@
             android:layout_height="35dp"
             android:src="@drawable/pp"
             android:scaleType="centerCrop"
+            android:onClick="open_profile"
             android:layout_gravity="bottom"
             android:layout_below="@+id/theme"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="0.5"/>
 
     </LinearLayout>
@@ -141,7 +142,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:progress="50"
+            android:progress="0"
             android:progressDrawable="@drawable/round_progress"/>
 
             <ProgressBar
@@ -152,7 +153,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
-                android:progress="50"
+                android:progress="0"
                 android:progressDrawable="@drawable/round_progress"/>
             <ProgressBar
                 android:id="@+id/fats_bar"
@@ -162,47 +163,49 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="18dp"
-                android:progress="50"
+                android:progress="0"
                 android:progressDrawable="@drawable/round_progress"/>
 
         </LinearLayout>
 
                 <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:layout_marginTop="0dp"
-            android:layout_below="@+id/progress"
-            android:id="@+id/percent_layout">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_weight="1"
-                android:text="50 g"
-                android:textSize="11dp"
-                android:id="@+id/protein_percent"
-                android:gravity="center"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:layout_marginTop="0dp"
+                    android:layout_below="@+id/progress"
+                    android:id="@+id/percent_layout">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_weight="1"
+                        android:text="150g  left"
+                        android:textSize="11dp"
+                        android:id="@+id/protein_percent"
+                        android:gravity="center"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_weight="1"
-                android:text="50 g"
-                android:textSize="11dp"
-                android:id="@+id/crabs_percent"
-                android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_weight="1"
+                        android:text="300g  left"
+                        android:textSize="11dp"
+                        android:id="@+id/crabs_percent"
+                        android:gravity="center"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_weight="1"
-                android:text="50 g"
-                android:textSize="11dp"
-                android:id="@+id/fats_percent"
-                android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_weight="1"
+                        android:text="80g  left"
+                        android:textSize="11dp"
+                        android:id="@+id/fats_percent"
+                        android:gravity="center"/>
+
+
 
         </LinearLayout>
 
@@ -246,7 +249,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="600 Kcal"
+                        android:text="R - 600 Kcal"
                         android:textSize="12dp"
                         android:textColor="#fff"
                         android:padding="10dp"/>
@@ -276,12 +279,14 @@
                     android:layout_below="@id/breakfast_caption_layout"
                     android:layout_toRightOf="@+id/consumed"
                     android:padding="10dp"
+                    android:weightSum="6"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="P -"
+                        android:layout_weight="0.6"
                         android:textColor="#fff"
                         android:layout_gravity="center_vertical"
                         android:textSize="14dp"
@@ -290,7 +295,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/breakfast_protein"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -300,13 +306,15 @@
                         android:layout_height="wrap_content"
                         android:text="C -"
                         android:textColor="#fff"
+                        android:layout_weight="0.6"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/breakfast_crabs"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -315,13 +323,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="F -"
+                        android:layout_weight="0.6"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_marginLeft="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/breakfast_fats"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -372,7 +382,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="600 Kcal"
+                        android:text="R - 600 Kcal"
                         android:textSize="12dp"
                         android:textColor="#fff"
                         android:padding="10dp"/>
@@ -386,6 +396,7 @@
                     android:layout_below="@id/morning_caption_layout"/>
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="200 Kcal"
@@ -395,13 +406,13 @@
                     android:textSize="15dp"
                     android:padding="10dp"
                     android:layout_marginLeft="10dp"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/morning_caption_layout"
                     android:layout_toRightOf="@+id/morning_consumed"
                     android:padding="10dp"
+                    android:weightSum="6"
                     android:orientation="horizontal">
 
                     <TextView
@@ -411,14 +422,16 @@
                         android:textColor="#fff"
                         android:layout_gravity="center_vertical"
                         android:textSize="14dp"
+                        android:layout_weight="0.6"
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="16"
+                        android:text="0"
                         android:id="@+id/morning_protein"
                         android:textColor="#fff"
+                        android:layout_weight="1"
                         android:textSize="14dp"/>
 
                     <TextView
@@ -426,15 +439,17 @@
                         android:layout_height="wrap_content"
                         android:text="C -"
                         android:textColor="#fff"
+                        android:layout_weight="0.6"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11"
+                        android:text="0"
                         android:id="@+id/morning_crabs"
                         android:textColor="#fff"
+                        android:layout_weight="1"
                         android:textSize="14dp"/>
 
                     <TextView
@@ -443,11 +458,13 @@
                         android:text="F -"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/morning_fats"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -497,7 +514,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="600 Kcal"
+                        android:text="R - 600 Kcal"
                         android:textSize="12dp"
                         android:textColor="#fff"
                         android:padding="10dp"/>
@@ -527,6 +544,7 @@
                     android:layout_below="@id/lunch_caption_layout"
                     android:layout_toRightOf="@+id/lunch_consumed"
                     android:padding="10dp"
+                    android:weightSum="6"
                     android:orientation="horizontal">
 
                     <TextView
@@ -536,12 +554,14 @@
                         android:textColor="#fff"
                         android:layout_gravity="center_vertical"
                         android:textSize="14dp"
+                        android:layout_weight="0.6"
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="16"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/lunch_protein"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -551,14 +571,16 @@
                         android:layout_height="wrap_content"
                         android:text="C -"
                         android:textColor="#fff"
+                        android:layout_weight="0.6"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11"
+                        android:text="0"
                         android:id="@+id/lunch_crabs"
+                        android:layout_weight="1"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
 
@@ -568,11 +590,13 @@
                         android:text="F -"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/lunch_fats"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -622,7 +646,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="600 Kcal"
+                        android:text="R - 600 Kcal"
                         android:textSize="12dp"
                         android:textColor="#fff"
                         android:padding="10dp"/>
@@ -652,6 +676,7 @@
                     android:layout_below="@id/evening_caption_layout"
                     android:layout_toRightOf="@+id/evening_consumed"
                     android:padding="10dp"
+                    android:weightSum="6"
                     android:orientation="horizontal">
 
                     <TextView
@@ -659,6 +684,7 @@
                         android:layout_height="wrap_content"
                         android:text="P -"
                         android:textColor="#fff"
+                        android:layout_weight="0.6"
                         android:layout_gravity="center_vertical"
                         android:textSize="14dp"
                         android:layout_marginLeft="10dp"/>
@@ -666,7 +692,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="16"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/evening_protein"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -677,14 +704,16 @@
                         android:text="C -"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11"
+                        android:text="0"
                         android:id="@+id/evening_crabs"
                         android:textColor="#fff"
+                        android:layout_weight="1"
                         android:textSize="14dp"/>
 
                     <TextView
@@ -693,11 +722,13 @@
                         android:text="F -"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/evening_fats"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -748,7 +779,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="600 Kcal"
+                        android:text="R - 600 Kcal"
                         android:textSize="12dp"
                         android:textColor="#fff"
                         android:padding="10dp"/>
@@ -778,6 +809,7 @@
                     android:layout_below="@id/dinner_caption_layout"
                     android:layout_toRightOf="@+id/dinner_consumed"
                     android:padding="10dp"
+                    android:weightSum="6"
                     android:orientation="horizontal">
 
                     <TextView
@@ -787,12 +819,14 @@
                         android:textColor="#fff"
                         android:layout_gravity="center_vertical"
                         android:textSize="14dp"
+                        android:layout_weight="0.6"
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="16"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/dinner_protein"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -803,14 +837,16 @@
                         android:text="C -"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11"
+                        android:text="0"
                         android:id="@+id/dinner_crabs"
                         android:textColor="#fff"
+                        android:layout_weight="1"
                         android:textSize="14dp"/>
 
                     <TextView
@@ -819,11 +855,13 @@
                         android:text="F -"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        android:layout_marginLeft="30dp"/>
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="20dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
+                        android:layout_weight="1"
                         android:id="@+id/dinner_fats"
                         android:textColor="#fff"
                         android:textSize="14dp"/>
@@ -833,9 +871,9 @@
             </RelativeLayout>
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:padding="10dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:padding="12dp"
                     android:src="@drawable/ic_add"
                     android:id="@+id/visible_view"
                     android:layout_below="@id/morning_snack_Parent"

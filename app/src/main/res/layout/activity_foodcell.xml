@@ -8,59 +8,47 @@
     xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.hunny.fitnesspoint.Food_Cell">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_circle"
-        android:scaleType="centerCrop"/>
+        android:layout_height="350dp"
+        android:background="@drawable/background_circle"
+        android:id="@+id/shape">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:id="@+id/theme">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:id="@+id/theme">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_back"
-            android:layout_gravity="bottom"
-            android:tint="#fff"
-            android:layout_marginLeft="5dp"
-            android:onClick="Back" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="bottom"
+                android:tint="#fff"
+                android:layout_marginLeft="5dp"
+                android:onClick="Back" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_gravity="bottom"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="#fff"
-            android:text="FOOD"
-            android:layout_weight="2.5"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layout_gravity="bottom"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:text="FOOD"
+                android:layout_weight="2.5"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
-<!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/theme"
-        android:layout_centerHorizontal="true"
-        android:textColor="#fff"
-        android:layout_marginTop="45dp"
-        android:text=""
-        android:textStyle="bold"/>-->
-
-    <at.grabner.circleprogress.CircleProgressView
+        <at.grabner.circleprogress.CircleProgressView
             android:id="@+id/circleView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/theme"
-            android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             CircleProgressView:cpv_autoTextSize="true"
             CircleProgressView:cpv_barColor="#fff"
             CircleProgressView:cpv_barWidth="3dp"
@@ -81,66 +69,70 @@
             CircleProgressView:cpv_unitScale="1"
             CircleProgressView:cpv_value="50" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/theme"
-        android:id="@+id/kcal"
-        android:layout_marginTop="60dp"
-        android:text="KCAL"
-        android:textSize="25dp"
-        android:textColor="#fff"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/kcal"
+            android:text="KCAL"
+            android:textSize="25dp"
+            android:textColor="#fff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/kcal"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:text="Of Daily Goals"
-        android:textColor="#fff"
-        android:textSize="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/kcal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:text="To Daily Goals"
+            android:textColor="#fff"
+            android:textSize="13dp"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:layout_marginTop="58dp"
-        android:layout_below="@id/circleView"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/name_layout">
+        <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/theme"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:layout_marginTop="45dp"
+                android:text=""
+                android:textStyle="bold"/>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Banana"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:id="@+id/name"
-        android:textSize="25dp"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Banana"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="40dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:id="@+id/name"
+                android:textSize="25dp"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_food"
-        android:backgroundTint="#f5541e"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        android:layout_below="@+id/name_layout"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_add" />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_food"
+            android:backgroundTint="#f5541e"
+            app:borderWidth="0dp"
+            app:fabSize="normal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_add" />
+
+    </RelativeLayout>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/name_layout"
-        android:layout_marginTop="20dp">
+        android:layout_below="@+id/shape"
+        android:layout_marginTop="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -152,7 +144,6 @@
                 android:id="@+id/serving_layout"
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="100dp"
                 android:weightSum="3">
 
                 <EditText

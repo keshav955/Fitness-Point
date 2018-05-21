@@ -18,7 +18,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hunny.fitnesspoint.dataModel.SignUpData;
@@ -48,30 +50,32 @@ import me.itangqi.waveloadingview.WaveLoadingView;
 
 public class Main_layout extends AppCompatActivity {
 
+    public static Main_layout main_layout;
+
     LinearLayout home, food_list, water, body_mass, scan_barcode;
     String TAG,u_activity,u_goal,u_gender;
 
     int u_weight, u_age ,cal;
 
+    TextView protein_rem , crabs_rem , fats_rem;
+
+    TextView breakfat_consumed,breakfast_protein,breakfast_crabs,breakfast_fats,
+            morning_consumed,morning_protein,morning_crabs,morning_fats,
+            lunch_consumed,lunch_protein,lunch_crabs,lunch_fats,
+            evening_consumed,evening_protein,evening_crabs,evening_fats,
+            dinner_consumed , dinner_protein,dinner_crabs,dinner_fats ;
+
     RelativeLayout lunch_parent, evening_parent, dinner_parent;
     ImageView visible;
 
-    Animation show_animation;
-    Animation hide_animation;
-    Animation show_transtion;
-    Animation hide_transtion;
-    Animation show_weight;
-    Animation hide_weight;
-    Animation show_item;
-    Animation hide_item;
+    Animation show_animation, hide_animation, show_transtion, hide_transtion, show_weight,hide_weight,show_item,hide_item;
     View dark_view;
+
+    ProgressBar protein_bar , crabs_bar,fats_bar;
 
     CircleImageView profile;
 
-    FloatingActionButton button;
-    FloatingActionButton food;
-    FloatingActionButton item;
-    FloatingActionButton weight;
+    FloatingActionButton button, food, item, weight;
 
     DrawerLayout dl;
 
@@ -91,6 +95,29 @@ public class Main_layout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
 
+        breakfat_consumed = findViewById(R.id.consumed);
+        breakfast_protein = findViewById(R.id.breakfast_protein);
+        breakfast_crabs   = findViewById(R.id.breakfast_crabs);
+        breakfast_fats    = findViewById(R.id.breakfast_fats);
+        morning_consumed  = findViewById(R.id.morning_consumed);
+        morning_protein   = findViewById(R.id.morning_protein);
+        morning_crabs = findViewById(R.id.morning_crabs);
+        morning_fats = findViewById(R.id.morning_fats);
+        lunch_consumed = findViewById(R.id.lunch_consumed);
+        lunch_protein = findViewById(R.id.lunch_protein);
+        lunch_crabs = findViewById(R.id.lunch_crabs);
+        lunch_fats = findViewById(R.id.lunch_fats);
+        evening_consumed = findViewById(R.id.evening_consumed);
+        evening_protein = findViewById(R.id.evening_protein);
+        evening_crabs = findViewById(R.id.evening_crabs);
+        evening_fats = findViewById(R.id.evening_fats);
+        dinner_consumed = findViewById(R.id.dinner_consumed);
+        dinner_protein = findViewById(R.id.dinner_protein);
+        dinner_crabs = findViewById(R.id.dinner_crabs);
+        dinner_fats = findViewById(R.id.dinner_fats);
+        
+        main_layout = this;
+
         final ProgressDialog pd = new ProgressDialog(Main_layout.this);
 
         pd.setTitle("Fetching..");
@@ -98,6 +125,13 @@ public class Main_layout extends AppCompatActivity {
         pd.show();
 
 
+        protein_bar = findViewById(R.id.protein_bar);
+        crabs_bar = findViewById(R.id.crabs_bar);
+        fats_bar = findViewById(R.id.fats_bar);
+
+        protein_rem = findViewById(R.id.protein_percent);
+        crabs_rem = findViewById(R.id.crabs_percent);
+        fats_rem = findViewById(R.id.fats_percent);
 
         profile_draw = findViewById(R.id.profile);
 
@@ -188,14 +222,6 @@ public class Main_layout extends AppCompatActivity {
             }
         });
 
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Main_layout.this, ProfileActivity.class);
-                startActivity(i);
-            }
-        });
-
         home.setBackgroundColor(Color.argb(255, 175, 173, 173));
 
         body_mass.setOnClickListener(new View.OnClickListener() {
@@ -223,6 +249,8 @@ public class Main_layout extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Main_layout.this, Search_Food_Activity.class);
                 startActivity(i);
+
+                i.putExtra("calorie",calculate_caloric_intake());
                 //      home.setBackgroundColor(Color.argb(0,0,0,0));
                 dl.closeDrawer(Gravity.LEFT);
             }
@@ -308,6 +336,7 @@ public class Main_layout extends AppCompatActivity {
 
     public void search_food(View view) {
         Intent i = new Intent(Main_layout.this, Search_Food_Activity.class);
+     //   i.putExtra("caloric_intake",calculate_caloric_intake());
         startActivity(i);
 
         food.setVisibility(View.GONE);
@@ -350,7 +379,6 @@ public class Main_layout extends AppCompatActivity {
         mWaveLoadingView.startAnimation();
 
     }
-
     public void open_drawer(View view) {
         dl.openDrawer(Gravity.LEFT);
     }
@@ -481,11 +509,32 @@ public class Main_layout extends AppCompatActivity {
         protein = getIntent().getStringExtra("proteinKey");
         crabs = getIntent().getStringExtra("crabKey");
         fats = getIntent().getStringExtra("fatsKey");
+        String identifer =  getIntent().getStringExtra("indentify");
+
         float protein_fl , crabs_fl , fats_fl;
 
         protein_fl = Float.parseFloat(protein);
         crabs_fl = Float.parseFloat(crabs);
         fats_fl = Float.parseFloat(fats);
+
+        int i_protein = (int) protein_fl;
+        int i_crabs = (int) crabs_fl ;
+        int i_fats = (int) fats_fl;
+
+        protein_bar.setMax(150);
+        crabs_bar.setMax(340);
+        fats_bar.setMax(80);
+        protein_bar.incrementProgressBy(i_protein);
+        crabs_bar.incrementProgressBy(i_crabs);
+        fats_bar.incrementProgressBy(i_fats);
+
+        int rem_pro = 150 - i_protein;
+        int rem_car = 300 - i_crabs;
+        int rem_fat = 80 - i_fats;
+
+        protein_rem.setText(String.valueOf(rem_pro)+"g" +"  left");
+        crabs_rem.setText(String.valueOf(rem_car)+"g" +"  left");
+        fats_rem.setText(String.valueOf(rem_fat)+"g" +"  left");
 
         float cal_protein,cal_crabs,cal_fats;
 
@@ -499,6 +548,49 @@ public class Main_layout extends AppCompatActivity {
 
         Wave();
 
+        if (identifer.equals("breakfast"))
+        {
+            breakfat_consumed.setText(calorie + "Kcal");
+            breakfast_protein.setText(protein);
+            breakfast_crabs.setText(crabs);
+            breakfast_fats.setText(fats);
+        }
+        if (identifer.equals("morning"))
+        {
+            morning_consumed.setText(calorie + "Kcal");
+            morning_protein.setText(protein);
+            morning_crabs.setText(crabs);
+            morning_fats.setText(fats);
+
+        }
+        if (identifer.equals("lunch"))
+        {
+            lunch_consumed.setText(calorie + "Kcal");
+            lunch_protein.setText(protein);
+            lunch_crabs.setText(crabs);
+            lunch_fats.setText(fats);
+        }
+        if (identifer.equals("evening"))
+        {
+            evening_consumed.setText(calorie + "Kcal");
+            evening_protein.setText(protein);
+            evening_crabs.setText(crabs);
+            evening_fats.setText(fats);
+
+        }
+        if (identifer.equals("dinner"))
+        {
+            dinner_consumed.setText(calorie + "Kcal");
+            dinner_protein.setText(protein);
+            dinner_crabs.setText(crabs);
+            dinner_fats.setText(fats) ;
+        }
+
     }
 
+    public void open_profile(View view) {
+
+        Intent i = new Intent(Main_layout.this, ProfileActivity.class);
+        startActivity(i);
+    }
 }

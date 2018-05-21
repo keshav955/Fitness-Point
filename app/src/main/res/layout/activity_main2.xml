@@ -86,28 +86,30 @@
         android:layout_below="@+id/caption"
         android:id="@+id/refer">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_weight="1"
-        android:background="@drawable/rounded_corner_rectangle"
-        android:layout_marginRight="15dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:visibility="visible"
+            android:background="@drawable/rounded_corner_rectangle">
 
-       <ImageView
-           android:layout_width="30dp"
-           android:layout_height="30dp"
-           android:src="@drawable/facebook"
-           android:layout_gravity="center"
-           android:layout_marginLeft="25dp"
-           android:id="@+id/fb_logo"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/facebook"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:id="@+id/fb_logo"/>
 
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:text="Facebook"
-           android:layout_marginLeft="-10dp"
-           android:gravity="center" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-20dp"
+                android:text="Facebook"
+                android:gravity="center"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -133,8 +135,32 @@
             />
         </LinearLayout>
 
-
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/caption">
+
+<!--
+        <com.facebook.login.widget.LoginButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/fb_login"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:layout_below="@id/caption"
+            android:visibility="invisible"/>
+-->
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -143,8 +169,7 @@
         android:layout_below="@+id/refer"
         android:layout_margin="30dp"
         android:layout_marginBottom="50dp"
-        android:onClick="login"
-        >
+        android:onClick="login">
 
         <ImageView
             android:layout_width="30dp"

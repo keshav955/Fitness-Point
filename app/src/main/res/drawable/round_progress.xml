@@ -17,6 +17,11 @@
                 <shape>
                     <corners android:radius="30dp"/>
                     <solid android:color="#fcfaf9"/>
+
+<!--
+                    <gradient android:startColor="#fff"
+                        android:endColor="#fc2a2a"/>
+-->
                 </shape>
             </scale>
         </item>

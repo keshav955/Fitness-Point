@@ -30,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
     CircleImageView profile_pic;
     ImageView profile_pic1;
 
+     FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         pd.setMessage("Please wait ..");
         pd.show();
 
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         String email = auth.getCurrentUser().getEmail().replace(".","");
 
@@ -57,15 +59,6 @@ public class ProfileActivity extends AppCompatActivity {
         activity = findViewById(R.id.u_activity);
         profile_pic = findViewById(R.id.profile_pic);
         profile_pic1 = findViewById(R.id.profile_pic1);
-        sign_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.signOut();
-                finish();
-                Intent i = new Intent(ProfileActivity.this,Main2Activity.class);
-                startActivity(i);
-            }
-        });
 
 
         StorageReference storageRef =
@@ -126,5 +119,15 @@ public class ProfileActivity extends AppCompatActivity {
     public void Back(View view)
     {
         finish();
+    }
+
+    public void sign_out(View view)
+    {
+                auth.signOut();
+                finish();
+                Intent i = new Intent(ProfileActivity.this,Main2Activity.class);
+                startActivity(i);
+
+
     }
 }

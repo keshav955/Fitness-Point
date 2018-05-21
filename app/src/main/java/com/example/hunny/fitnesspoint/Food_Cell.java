@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,9 +20,13 @@ import android.widget.Toast;
 
 import com.github.lzyzsd.circleprogress.CircleProgress;
 
+import at.grabner.circleprogress.CircleProgressView;
+
 public class Food_Cell extends AppCompatActivity {
 
     CircleProgress protein_progress , crabs_progress, fats_progress;
+
+    CircleProgressView cal_progress;
 
     public String food_name,serving,calorie,protein,crabs,fats;
 
@@ -30,10 +36,24 @@ public class Food_Cell extends AppCompatActivity {
     FloatingActionButton add_food;
     Button breakfast, morning_snack,lunch,evening_snack,dinner,late_night;
 
+    EditText serving_et;
+
+    float protein_fl , crabs_fl , fats_fl;
+
+    int kcal_per,cal_intake = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foodcell);
+
+        serving_et = findViewById(R.id.serving);
+
+        cal_intake =  Main_layout.main_layout.calculate_caloric_intake();
+
+        cal_progress = findViewById(R.id.circleView);
+
+        cal_progress.setMaxValue(100);
 
         food_name = getIntent().getStringExtra("nameKey");
         serving = getIntent().getStringExtra("servingKey");
@@ -55,8 +75,6 @@ public class Food_Cell extends AppCompatActivity {
         crabs_progress = findViewById(R.id.crabs);
         fats_progress = findViewById(R.id.fats);
 
-        float protein_fl , crabs_fl , fats_fl;
-
         protein_fl = Float.parseFloat(protein);
         crabs_fl = Float.parseFloat(crabs);
         fats_fl = Float.parseFloat(fats);
@@ -67,14 +85,14 @@ public class Food_Cell extends AppCompatActivity {
         cal_crabs = 4 * crabs_fl;
         cal_fats = 9 * fats_fl;
 
-        float kcal = cal_protein + cal_fats + cal_crabs;
+        // float kcal = cal_protein + cal_fats + cal_crabs;
 
-       // float kcal = Float.parseFloat(calorie);
+        final float kcal = Float.parseFloat(calorie);
 
         int protein_per =  Math.round( (cal_protein/kcal)*100 );
         protein_progress.setProgress(protein_per);
 
-        int crabs_per =Math.round ((cal_crabs/kcal)*100);
+        int crabs_per = Math.round ((cal_crabs/kcal)*100);
         crabs_progress.setProgress(crabs_per);
 
         int fats_per = Math.round((cal_fats/kcal)*100);
@@ -85,6 +103,48 @@ public class Food_Cell extends AppCompatActivity {
         crabs_txt.setText(crabs);
         fats_txt.setText(fats);
         calorie_txt.setText(calorie);
+
+        kcal_per = (int) (( kcal * 100)/cal_intake);
+
+        cal_progress.setValueAnimated(kcal_per);
+
+        serving_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(serving_et.getText().toString().equals(""))
+                {
+                }
+                else
+                {
+                    int ser = Integer.parseInt(serving_et.getText().toString());
+                    int cal =  kcal_per * ser;
+                    cal_progress.setValueAnimated(cal);
+
+
+                    int ser_pro = (int) (ser * protein_fl);
+                    int ser_carb = (int) (ser * crabs_fl);
+                    int ser_fat = (int) (ser * fats_fl);
+                    int ser_kcal = (int) (ser * kcal);
+
+                    protein_txt.setText(String.valueOf(ser_pro));
+                    crabs_txt.setText(String.valueOf(ser_carb));
+                    fats_txt.setText(String.valueOf(ser_fat));
+                    calorie_txt.setText(String.valueOf(ser_kcal));
+                }
+            }
+        });
+
 
         add_food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +166,7 @@ public class Food_Cell extends AppCompatActivity {
                 breakfast.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        send_data();
+                        send_data("breakfast");
                         dialog.dismiss();
                     }
                 });
@@ -114,28 +174,28 @@ public class Food_Cell extends AppCompatActivity {
                 morning_snack.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        send_data();
+                        send_data("morning");
                         dialog.dismiss();
                     }
                 });
                 lunch.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        send_data();
+                        send_data("lunch");
                         dialog.dismiss();
                     }
                 });
                 evening_snack.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        send_data();
+                        send_data("evening");
                         dialog.dismiss();
                     }
                 });
                 dinner.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        send_data();
+                        send_data("dinner");
                         dialog.dismiss();
                     }
                 });
@@ -171,7 +231,7 @@ public class Food_Cell extends AppCompatActivity {
         finish();
     }
 
-    public void send_data()
+    public void send_data(String s)
     {
         Intent i  = new Intent(Food_Cell.this, Main_layout.class);
         i.putExtra("calorieKey" , calorie);
@@ -180,6 +240,7 @@ public class Food_Cell extends AppCompatActivity {
         i.putExtra("fatsKey",fats);
         i.putExtra("nameKey",food_name);
         i.putExtra("servingKey",String.valueOf(serving));
+        i.putExtra("indentify",s);
 
         startActivity(i);
         finish();
