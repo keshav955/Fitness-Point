@@ -46,7 +46,7 @@ public class FoodsAdapter_new extends RecyclerView.Adapter<FoodsAdapter_new.MyVi
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.food_list_row, parent, false);
+                .inflate(R.layout.food_list_row_new, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -81,18 +81,6 @@ public class FoodsAdapter_new extends RecyclerView.Adapter<FoodsAdapter_new.MyVi
             @Override
             public void onClick(View view) {
 
-
-
-                Intent i = new Intent(context,Food_Cell.class);
-
-                i.putExtra("calorieKey",String.valueOf(food.calorie));
-                i.putExtra("proteinKey",String.valueOf(food.protein));
-                i.putExtra("crabKey",String.valueOf(food.carbs));
-                i.putExtra("fatsKey",String.valueOf(food.fats));
-                i.putExtra("nameKey",String.valueOf(food.name));
-                i.putExtra("servingKey",String.valueOf(food.serving));
-
-                context.startActivity(i);
 
             }
         });

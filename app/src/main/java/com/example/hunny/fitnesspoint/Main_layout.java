@@ -428,6 +428,50 @@ public class Main_layout extends AppCompatActivity {
                 }
             }
         });
+
+        RelativeLayout breakfast_parent,morning_parent,lunch_parent,evening_parent,dinner_parent;
+
+        breakfast_parent = findViewById(R.id.breakfast_Parent);
+        morning_parent   = findViewById(R.id.morning_snack_Parent);
+        lunch_parent = findViewById(R.id.lunch_Parent);
+        evening_parent   = findViewById(R.id.evening_Parent);
+        dinner_parent = findViewById(R.id.dinner_Parent);
+
+        breakfast_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String consumed = "breakfast";
+                Show_data(consumed);
+            }
+        });
+        morning_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String consumed = "morning";
+                Show_data(consumed);
+            }
+        });
+        lunch_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String consumed = "lunch";
+                Show_data(consumed);
+            }
+        });
+        evening_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String consumed = "evening";
+                Show_data(consumed);
+            }
+        });
+        dinner_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String consumed = "dinner";
+                Show_data(consumed);
+            }
+        });
     }
 
     public void search_food(View view) {
@@ -806,10 +850,17 @@ public class Main_layout extends AppCompatActivity {
         shared_preference.putInt("protein_bar", protein_bar.getProgress());
         shared_preference.putInt("crabs_bar",crabs_bar.getProgress());
         shared_preference.putInt("fats_bar",fats_bar.getProgress());
-        shared_preference.putInt("rem_pro",Integer.parseInt(protein_rem.getText().toString().replace(" ","").replace("g left","").trim()));
-        shared_preference.putInt("rem_car",Integer.parseInt(crabs_rem.getText().toString().replace(" ","").replace("g left","").trim()));
-        shared_preference.putInt("rem_fat",Integer.parseInt(fats_rem.getText().toString().replace(" ","").replace("g left","").trim()));
+        shared_preference.putInt("rem_pro",Integer.parseInt(protein_rem.getText().toString().replace(" ","").replace("gleft","").trim()));
+        shared_preference.putInt("rem_car",Integer.parseInt(crabs_rem.getText().toString().replace(" ","").replace("gleft","").trim()));
+        shared_preference.putInt("rem_fat",Integer.parseInt(fats_rem.getText().toString().replace(" ","").replace("gleft","").trim()));
 
         shared_preference.apply();
+    }
+
+    public void Show_data(String s)
+    {
+        Intent i = new Intent(Main_layout.this,Show_data.class);
+        i.putExtra("Indetifier",s);
+        startActivity(i);
     }
 }

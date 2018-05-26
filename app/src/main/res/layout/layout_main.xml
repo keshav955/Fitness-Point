@@ -216,6 +216,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="40dp"
+                    android:onClick="Show_data"
                     android:id="@+id/breakfast_Parent"
                     android:layout_below="@+id/percent_layout"
                     android:background="@drawable/stoke_rect">
@@ -349,7 +350,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="30dp"
-                android:layout_below="@id/breakfast_Parent"
+                    android:onClick="Show_data"
+                    android:layout_below="@id/breakfast_Parent"
                 android:id="@+id/morning_snack_Parent"
                 android:background="@drawable/stoke_rect">
 
@@ -480,6 +482,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="30dp"
+                    android:onClick="Show_data"
                     android:visibility="gone"
                 android:layout_below="@id/morning_snack_Parent"
                 android:id="@+id/lunch_Parent"
@@ -612,7 +615,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="30dp"
-                android:layout_below="@id/lunch_Parent"
+                    android:onClick="Show_data"
+                    android:layout_below="@id/lunch_Parent"
                 android:id="@+id/evening_Parent"
                     android:visibility="gone"
                 android:background="@drawable/stoke_rect">
@@ -747,6 +751,7 @@
                     android:layout_marginBottom="20dp"
                 android:layout_below="@id/evening_Parent"
                 android:id="@+id/dinner_Parent"
+                    android:onClick="Show_data"
                     android:visibility="gone"
                 android:background="@drawable/stoke_rect">
 

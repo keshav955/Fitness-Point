@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Show_data">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +54,7 @@
         <service android:name=".AlarmService" />
 
         <activity android:name=".Review_consumption" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Show_data"></activity>
     </application>
 
 </manifest>

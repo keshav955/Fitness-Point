@@ -4,8 +4,8 @@ package com.example.hunny.fitnesspoint.RecycleView;
  * Created by Lincoln on 15/01/16.
  */
 public class Food {
-    public String name,serving;
-    public float calorie,protein,carbs,fats;
+    public String name,serving ;
+    public float calorie,protein,carbs,fats ;
 
     public Food() {
     }

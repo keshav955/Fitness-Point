@@ -4,7 +4,7 @@ package com.example.hunny.fitnesspoint.RecycleViewFood;
  * Created by Lincoln on 15/01/16.
  */
 public class Food_new {
-    public String name,serving;
+    public String name,serving, food_id;
     public float calorie,protein,carbs,fats;
 
     public Food_new() {

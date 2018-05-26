@@ -208,6 +208,7 @@ public class Search_Food_Activity extends AppCompatActivity {
                 for ( DataSnapshot snap : dataSnapshot.getChildren())
                 {
                     Food data = snap.getValue(Food.class);
+
                     foodList.add(data);
                 }
 

@@ -2,6 +2,7 @@ package com.example.hunny.fitnesspoint;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hunny.fitnesspoint.RecycleView.Food;
 import com.github.lzyzsd.circleprogress.CircleProgress;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
 
 import at.grabner.circleprogress.CircleProgressView;
 
@@ -237,7 +245,27 @@ public class Food_Cell extends AppCompatActivity {
     }
 
     public void send_data(String s) {
-        Intent i = new Intent(Food_Cell.this, Main_layout.class);
+        final Calendar cal = Calendar.getInstance();
+
+        final int  year_x = cal.get(Calendar.YEAR);
+        int  month_x = cal.get(Calendar.MONTH);
+        int  day_x = cal.get(Calendar.DAY_OF_MONTH);
+
+
+        final String curent_date = day_x+"_"+(month_x+1)+"_"+year_x;
+
+        String time = String.valueOf(System.currentTimeMillis());
+
+        Food food_consumed =new Food(food_name,serving,ser_kcal,ser_pro,ser_carb,ser_fat);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        FirebaseAuth authenticate = FirebaseAuth.getInstance();
+
+        database.getReference().child("consumed_food").child(authenticate.getCurrentUser().getEmail().replace(".","")).child(curent_date)
+                .child(s).child(time).setValue(food_consumed);
+
+                Intent i = new Intent(Food_Cell.this, Main_layout.class);
 
         i.putExtra("calorieKey", String.valueOf(ser_kcal));
         i.putExtra("proteinKey", String.valueOf(ser_pro));
@@ -247,7 +275,6 @@ public class Food_Cell extends AppCompatActivity {
         i.putExtra("servingKey", String.valueOf(serving));
         i.putExtra("indentify", s);
         i.putExtra("result", "Ok");
-
 
         startActivity(i);
 
