@@ -30,7 +30,7 @@ public class Show_data extends AppCompatActivity {
     private List<Food_new> foodList = new ArrayList<>();
     private RecyclerView recyclerView;
     private FoodsAdapter_new mAdapter;
-    String s;
+    public static   String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,6 @@ public class Show_data extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(mAdapter);
-
 
         prepareFoodData();
     }
@@ -121,6 +120,19 @@ public class Show_data extends AppCompatActivity {
     }
 
     public void Back(View view) {
+        Intent i = new Intent(Show_data.this,Main_layout.class);
+        i.putExtra("result" , "cancel");
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent i  = new Intent(Show_data.this, Main_layout.class);
+        i.putExtra("result" , "cancel");
+        startActivity(i);
         finish();
     }
 

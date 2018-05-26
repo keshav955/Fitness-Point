@@ -7,9 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 
-public class AlarmService extends Service {
+public class AlarmService1 extends Service {
     private static final int NOTIFICATION_ID = 1;
     private NotificationManager notificationManager;
     private PendingIntent pendingIntent;
@@ -27,12 +26,12 @@ public class AlarmService extends Service {
         super.onStart(intent, startId);
         Context context = this.getApplicationContext();
         notificationManager = (NotificationManager)context.getSystemService(context.NOTIFICATION_SERVICE);
-        Intent mIntent = new Intent(this, Water.class);
+        Intent mIntent = new Intent(this, Main_layout.class);
         pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-        builder.setContentTitle("DRINK WATER");
-        builder.setContentText("its your time for drinking water");
+        builder.setContentTitle("CONSUME FOOD");
+        builder.setContentText("its your time for have food");
         builder.setSmallIcon(R.drawable.ic_stat_name);
         builder.setContentIntent(pendingIntent);
 

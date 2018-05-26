@@ -60,7 +60,7 @@ public class Water extends AppCompatActivity {
 
         consumed = findViewById(R.id.consumed);
 
-        final  ProgressDialog pd = new ProgressDialog(Water.this);
+        final ProgressDialog pd = new ProgressDialog(Water.this);
 
         pd.setTitle("Fetching..");
         pd.setMessage("Please wait ..");
@@ -76,7 +76,7 @@ public class Water extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                pd.hide();
+                //pd.hide();
 
                 SignUpData data = dataSnapshot.getValue(SignUpData.class);
 
@@ -255,6 +255,7 @@ public class Water extends AppCompatActivity {
         waveProgressbar.setCurrent(current,litre +" ml");
 
         Intent activate = new Intent(this, AlarmReceiver.class);
+
         AlarmManager alarms ;
         PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, activate, 0);
         alarms = (AlarmManager) getSystemService(ALARM_SERVICE);

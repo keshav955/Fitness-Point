@@ -1,5 +1,7 @@
 package com.example.hunny.fitnesspoint;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,7 +62,7 @@ public class Main_layout extends AppCompatActivity {
     LinearLayout home, food_list, water, body_mass, scan_barcode;
     String TAG,u_activity,u_goal,u_gender;
 
-    int u_weight, u_age ,cal,protein_intake = 0,crabs_intake = 0,fats_intake = 0;
+    int u_weight, u_age ,protein_intake = 0,crabs_intake = 0,fats_intake = 0;
 
     TextView protein_rem , crabs_rem , fats_rem;
 
@@ -80,7 +82,7 @@ public class Main_layout extends AppCompatActivity {
 
     View dark_view;
 
-    ProgressBar protein_bar , crabs_bar,fats_bar;
+    public static ProgressBar protein_bar , crabs_bar,fats_bar;
 
     CircleImageView profile;
 
@@ -150,7 +152,7 @@ public class Main_layout extends AppCompatActivity {
             SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
 
             shared_preference.putString("date" , curentDate );
-            shared_preference.putInt("Caloric_intake" , 0);
+            shared_preference.putInt("Caloric_intake" ,0);
             shared_preference.putString("calorie" , "0" );
             shared_preference.putString("breakfat_consumed" ,"0 Kcal");
             shared_preference.putString("breakfast_protein" , "0" );
@@ -182,7 +184,7 @@ public class Main_layout extends AppCompatActivity {
             shared_preference.apply();
         }
 
-        int caloric_intake = sp.getInt("Caloric_intake" , 0);
+         kcal = String.valueOf(sp.getInt("Caloric_intake" , 0));
 
              rem_pro = sp.getInt("rem_pro",-1);
              rem_car = sp.getInt("rem_car",-1);
@@ -225,9 +227,9 @@ public class Main_layout extends AppCompatActivity {
         crabs_rem = findViewById(R.id.crabs_percent);
         fats_rem = findViewById(R.id.fats_percent);
 
-        protein_rem.setText(String.valueOf(rem_pro));
-        crabs_rem.setText(String.valueOf(rem_car));
-        fats_rem.setText(String.valueOf(rem_fat));
+        protein_rem.setText(String.valueOf(rem_pro + "g left"));
+        crabs_rem.setText(String.valueOf(rem_car +"g left"));
+        fats_rem.setText(String.valueOf(rem_fat + "g left"));
 
         profile_draw = findViewById(R.id.profile);
 
@@ -279,7 +281,7 @@ public class Main_layout extends AppCompatActivity {
 
                 if (getIntent().getStringExtra("result") == null) {
 
-                    cal = calculate_caloric_intake();
+                    AppConfig.caloric_intake  = calculate_caloric_intake();
                 }
                 Wave();
 
@@ -491,33 +493,35 @@ public class Main_layout extends AppCompatActivity {
     }
 
     public void Wave() {
+        String progress;
+        float f_kcal;
+            progress  = kcal;
+            f_kcal = Float.parseFloat(kcal);
 
-        String progress = kcal;
-        float f_kcal = Float.parseFloat(kcal);
         float kcal_consumed = 0;
 
-        if (cal == 0)
+        if (AppConfig.caloric_intake == 0)
         {
         }
         else {
-
-             kcal_consumed = (f_kcal / cal) * 100;
+             kcal_consumed = (f_kcal / AppConfig.caloric_intake) * 100;
         }
        // String remaining = String.valueOf((cal)-kcal_consumed);
         mWaveLoadingView = (WaveLoadingView) findViewById(R.id.waveLoadingView);
         mWaveLoadingView.setShapeType(WaveLoadingView.ShapeType.CIRCLE);
         //mWaveLoadingView.setTopTitle("Top Title");
         // mWaveLoadingView.setCenterTitleColor(Color.GRAY);
-        mWaveLoadingView.setTopTitle("Consumed - "+progress);
+        mWaveLoadingView.setTopTitle("Consumed - "+ progress);
         mWaveLoadingView.setTopTitleColor(-1);
+        mWaveLoadingView.setTopTitleSize(15);
         mWaveLoadingView.setBottomTitleSize(18);
-        mWaveLoadingView.setCenterTitle("Total - "+String.valueOf(cal));
-        mWaveLoadingView.setBottomTitle("Remaining - ");
+        mWaveLoadingView.setCenterTitle("Total - "+String.valueOf(AppConfig.caloric_intake));
+        mWaveLoadingView.setBottomTitle("");
         mWaveLoadingView.setProgressValue((int) kcal_consumed);
         mWaveLoadingView.setBorderWidth(6);
         mWaveLoadingView.setAmplitudeRatio(40);
-        mWaveLoadingView.setTopTitleStrokeColor(Color.LTGRAY);
-        mWaveLoadingView.setTopTitleStrokeWidth(1);
+        mWaveLoadingView.setTopTitleStrokeColor(Color.argb(0,0,0,0));
+        mWaveLoadingView.setTopTitleStrokeWidth(0);
         mWaveLoadingView.setAnimDuration(2000);
         mWaveLoadingView.pauseAnimation();
         mWaveLoadingView.resumeAnimation();
@@ -743,7 +747,7 @@ public class Main_layout extends AppCompatActivity {
 
             f_kcal = Float.parseFloat(calorie);
 
-            kcal = String.valueOf(f_kcal);
+            kcal = String.valueOf( Float.parseFloat(kcal) + f_kcal );
             Wave();
 
             if (identifer.equals("breakfast")) {
@@ -804,6 +808,17 @@ public class Main_layout extends AppCompatActivity {
                 dinner_crabs.setText(String.valueOf(total_crabs));
                 dinner_fats.setText(String.valueOf(total_fats));
             }
+
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.DATE,0);
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+
+            Intent activate = new Intent(this, AlarmReceiver1.class);
+
+            AlarmManager alarms ;
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, activate, 0);
+            alarms = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alarms.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+7200000, alarmIntent);
         }
     }
 
@@ -826,7 +841,7 @@ public class Main_layout extends AppCompatActivity {
         SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
 
         shared_preference.putString("date" , curentDate );
-        shared_preference.putInt("Caloric_intake" , cal);
+        shared_preference.putInt ("Caloric_intake" ,(int)(Float.parseFloat(kcal)));
         shared_preference.putString("breakfat_consumed" , breakfat_consumed.getText().toString() );
         shared_preference.putString("breakfast_protein" , breakfast_protein.getText().toString() );
         shared_preference.putString("breakfast_crabs" , breakfast_crabs.getText().toString() );
@@ -862,5 +877,6 @@ public class Main_layout extends AppCompatActivity {
         Intent i = new Intent(Main_layout.this,Show_data.class);
         i.putExtra("Indetifier",s);
         startActivity(i);
+        finish();
     }
 }

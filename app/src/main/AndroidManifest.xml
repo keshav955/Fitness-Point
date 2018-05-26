@@ -53,6 +53,10 @@
 
         <service android:name=".AlarmService" />
 
+        <receiver android:name=".AlarmReceiver1" />
+
+        <service android:name=".AlarmService1" />
+
         <activity android:name=".Review_consumption" />
         <activity android:name=".Show_data"></activity>
     </application>

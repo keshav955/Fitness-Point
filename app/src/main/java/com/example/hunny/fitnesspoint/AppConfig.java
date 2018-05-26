@@ -8,7 +8,7 @@ import android.app.Application;
 
 public class AppConfig extends Application {
 
-    public static String protein = "" ;
+    public static int caloric_intake = 0 ;
 
     @Override
     public void onCreate() {
