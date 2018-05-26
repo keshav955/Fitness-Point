@@ -39,12 +39,14 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.shuhart.stepview.StepView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -311,13 +313,16 @@ public class Sign_up extends AppCompatActivity {
                     return;
                 }
 
-                if(mAuth.getCurrentUser() == null) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                if (user != null) {
+                    // User is signed in
+                    save_profile_data();
+                } else {
+                    // No user is signed in
                     save_authentication_data();
                 }
-                else
-                {
-                    save_profile_data();
-                }
+
                 if (currentStep < stepView.getStepCount() - 1) {
                     currentStep++;
                     stepView.go(currentStep, true);
@@ -487,6 +492,7 @@ public class Sign_up extends AppCompatActivity {
 
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
+            profile_image_uri = data.getData();
 
 
             image_view.setImageBitmap(imageBitmap);
@@ -560,17 +566,27 @@ public class Sign_up extends AppCompatActivity {
 
                 Intent i = new Intent(Sign_up.this, Activity.class);
                 startActivity(i);
+                finish();
             }
         });
     }
 
     public void uploadFile(Uri uri) {
+
+        image_view.setDrawingCacheEnabled(true);
+        image_view.buildDrawingCache();
+        Bitmap bitmap = image_view.getDrawingCache();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference mountainImagesRef = storageRef.child("images/" + email.replace(".","") + ".jpg");
 
 
-        UploadTask uploadTask = mountainImagesRef.putFile(uri);
+        UploadTask uploadTask = mountainImagesRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {

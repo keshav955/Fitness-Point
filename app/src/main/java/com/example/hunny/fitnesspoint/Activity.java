@@ -135,5 +135,6 @@ public class Activity extends AppCompatActivity {
         Intent i = new Intent(Activity.this,Main_layout.class);
         i.putExtra("activity", activity);
         startActivity(i);
+        finish();
     }
 }

@@ -193,6 +193,7 @@ public class Main2Activity extends AppCompatActivity {
                             }
 
                             else {
+
                                 Intent i = new Intent(Main2Activity.this,Main_layout.class);
                                 //i.putExtra("user",user);
                                 startActivity(i);
@@ -281,7 +282,7 @@ public class Main2Activity extends AppCompatActivity {
 
               super.onStop();
 
-              mAuth.signOut();
+
          }
     @Override
     protected void onDestroy() {
@@ -294,7 +295,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        mAuth.signOut();
+
     }
 
 

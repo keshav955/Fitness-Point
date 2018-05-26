@@ -61,7 +61,6 @@ dependencies {
 
     compile "com.squareup.picasso:picasso:2.4.0"
     // implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-
 }
 apply plugin: 'com.google.gms.google-services'
 

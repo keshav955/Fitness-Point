@@ -99,7 +99,7 @@ public class Search_Food_Activity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         // adding custom divider line with padding 16dp
-        // recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL, 16));
+        // recyclerView.addItemDecoration(new MyDividerItemDecoration_new(this, LinearLayoutManager.HORIZONTAL, 16));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(mAdapter);
@@ -131,7 +131,7 @@ public class Search_Food_Activity extends AppCompatActivity {
     {
         final  ProgressDialog pd = new ProgressDialog(Search_Food_Activity.this);
 
-        pd.setTitle("Fetching Food Info..");
+        pd.setTitle("Fetching Food_new Info..");
         pd.setMessage("Please wait ..");
         pd.show();
 
@@ -219,9 +219,6 @@ public class Search_Food_Activity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
 
@@ -236,12 +233,14 @@ public class Search_Food_Activity extends AppCompatActivity {
                 searched_foodlist.add(food);
             }
         }
-
         mAdapter.notifyDataSetChanged();
     }
 
     public void Back(View view)
     {
+        Intent i  = new Intent(Search_Food_Activity.this, Main_layout.class);
+        i.putExtra("result" , "cancel");
+        startActivity(i);
         finish();
     }
 
@@ -251,5 +250,18 @@ public class Search_Food_Activity extends AppCompatActivity {
         intent.setAction("com.google.zxing.client.android.SCAN");
         intent.putExtra("SAVE_HISTORY", true);
         startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent i  = new Intent(Search_Food_Activity.this, Main_layout.class);
+        i.putExtra("result" , "cancel");
+        startActivity(i);
+
+        finish();
+
+
     }
 }

@@ -2,6 +2,7 @@ package com.example.hunny.fitnesspoint;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -125,7 +126,10 @@ public class ProfileActivity extends AppCompatActivity {
     {
                 auth.signOut();
                 finish();
-                Intent i = new Intent(ProfileActivity.this,Main2Activity.class);
+        SharedPreferences.Editor shared_preference = getSharedPreferences("app_data" , MODE_PRIVATE).edit();
+        shared_preference.clear().commit();
+
+        Intent i = new Intent(ProfileActivity.this,Main2Activity.class);
                 startActivity(i);
 
 

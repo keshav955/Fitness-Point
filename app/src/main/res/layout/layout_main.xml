@@ -955,7 +955,6 @@
             app:fabSize="normal"
             android:layout_marginBottom="30dp"/>
 
-
         <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
