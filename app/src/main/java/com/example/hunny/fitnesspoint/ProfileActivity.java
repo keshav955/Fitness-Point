@@ -105,7 +105,6 @@ public class ProfileActivity extends AppCompatActivity {
                 dob.setText(data.dob);
                 weight.setText(data.weight);
                 height.setText(data.height);
-                activity.setText(data.activity);
             }
 
             @Override
@@ -113,6 +112,26 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        FirebaseAuth authenticate = FirebaseAuth.getInstance();
+
+        database.getReference().child("Goals").child(authenticate.getCurrentUser().getEmail().replace(".",""))
+                   .addValueEventListener(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(DataSnapshot dataSnapshot) {
+
+                           SignUpData data = dataSnapshot.getValue(SignUpData.class);
+
+                           activity.setText(data.activity);
+                       }
+
+                       @Override
+                       public void onCancelled(DatabaseError databaseError) {
+
+                       }
+                   });
+
+
 
     }
 

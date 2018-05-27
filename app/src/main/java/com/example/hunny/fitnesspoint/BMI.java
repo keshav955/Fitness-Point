@@ -133,8 +133,10 @@ public class BMI extends AppCompatActivity {
                     {
                         if(lbs.getVisibility() == View.VISIBLE ) {
                             wt = String.valueOf(lbs.getValue());
-                            weight_et.setText(wt);
-                            measure_weight.setText("LBS");
+                            int ii= lbs.getValue();
+                            int weight_lbs = (int)(ii / 2.2);
+                            weight_et.setText(String.valueOf(weight_lbs));
+                            measure_weight.setText("KG");
                         }
                         else
                         {
@@ -204,8 +206,10 @@ public class BMI extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
                         if(feet.getVisibility() == View.VISIBLE ) {
-                            ht = String.valueOf(feet.getValue()) + "." + String.valueOf(inch.getValue());
-                            height_et.setText(ht);
+                           // ht = String.valueOf(feet.getValue()) + "." + String.valueOf(inch.getValue());
+                            int ft_height = (int)((feet.getValue() * 12) + inch.getValue());
+                            String ft_to_cm = String.valueOf((int)(ft_height * 2.54));
+                            height_et.setText(ft_to_cm);
                             measure_height.setText("Feet");
                         }
                         else

@@ -26,4 +26,9 @@ public class SignUpData {
         this.height = height;
         this.activity = "Beast Mode";
     }
+
+    public SignUpData(String activity)
+    {
+        this.activity = activity;
+    }
 }

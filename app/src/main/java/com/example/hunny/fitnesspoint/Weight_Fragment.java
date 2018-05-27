@@ -44,6 +44,8 @@ public class Weight_Fragment extends Fragment {
     float height;
     int weight;
 
+    int identifier;
+
     String height_st;
     String weight_st;
     String text;
@@ -125,13 +127,35 @@ public class Weight_Fragment extends Fragment {
                 Spinner spinner = (Spinner) view1.findViewById(R.id.spinner) ;
                 final EditText input_height = (EditText) view1.findViewById(R.id.input_height);
 
+                final EditText feet = view1.findViewById(R.id.feet);
+                final EditText inches = view1.findViewById(R.id.inches);
+                final TextView ft = view1.findViewById(R.id.ft);
+                final TextView cm = view1.findViewById(R.id.cm);
+
                 builder.setPositiveButton("Set", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String input = input_height.getText().toString();
 
-                        height_et.setText(input );
-                        height_unit.setText(text);
+
+                        if(identifier == 1)
+                        {
+                            int feet_int = Integer.parseInt(feet.getText().toString());
+                            int inches_int = Integer.parseInt(inches.getText().toString());
+
+                            int height_inches = (feet_int * 12) + inches_int;
+
+                           int height_cms = (int)(height_inches * 2.54);
+
+                           height_et.setText(String.valueOf(height_cms) );
+                            height_unit.setText("Cm");
+                        }
+                        else
+                        {
+                            height_et.setText(input );
+                            height_unit.setText(text);
+                        }
+
 
                     }
                 });
@@ -152,6 +176,24 @@ public class Weight_Fragment extends Fragment {
                     {
                          text = adapterView.getItemAtPosition(i).toString();
 
+                         identifier = i ;
+
+                         if(i == 1)
+                         {
+                             feet.setVisibility(View.VISIBLE);
+                             inches.setVisibility(View.VISIBLE);
+                             ft.setVisibility(View.VISIBLE);
+                             input_height.setVisibility(View.GONE);
+                             cm.setVisibility(View.GONE);
+                         }
+                         else
+                         {
+                             feet.setVisibility(View.GONE);
+                             inches.setVisibility(View.GONE);
+                             ft.setVisibility(View.GONE);
+                             input_height.setVisibility(View.VISIBLE);
+                             cm.setVisibility(View.VISIBLE);
+                         }
                     }
 
                     @Override
@@ -163,13 +205,12 @@ public class Weight_Fragment extends Fragment {
             }
         });
 
-
-
         return v;
     }
 
         public void Calculate_BMI()
-        {   String h_unit = height_unit.getText().toString();
+        {
+            String h_unit = height_unit.getText().toString();
             String w_unit = weight_unit.getText().toString();
 
             height_st = height_et.getText().toString();
@@ -177,7 +218,6 @@ public class Weight_Fragment extends Fragment {
 
             height = Integer.parseInt(height_st);
             weight = Integer.parseInt(weight_st);
-
 
             float height_metre = height/100;
             float height_square = height_metre * height_metre;

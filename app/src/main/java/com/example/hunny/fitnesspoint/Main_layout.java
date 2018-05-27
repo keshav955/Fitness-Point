@@ -269,21 +269,39 @@ public class Main_layout extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                pd.hide();
-
                 SignUpData data = dataSnapshot.getValue(SignUpData.class);
 
                 u_weight = Integer.parseInt(data.weight);
                 u_age  = Integer.parseInt(data.dob);
-                u_activity = data.activity;
                 u_goal = data.goal;
                 u_gender = data.gender;
 
-                if (getIntent().getStringExtra("result") == null) {
+                FirebaseDatabase databases = FirebaseDatabase.getInstance();
 
-                    AppConfig.caloric_intake  = calculate_caloric_intake();
-                }
-                Wave();
+                databases.getReference().child("Goals").child(auth.getCurrentUser().getEmail().replace(".",""))
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                pd.hide();
+
+                                SignUpData data = dataSnapshot.getValue(SignUpData.class);
+
+                                u_activity = data.activity;
+
+                                if (getIntent().getStringExtra("result") == null) {
+
+                                    AppConfig.caloric_intake  = calculate_caloric_intake();
+                                }
+                                Wave();
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
 
             }
 
@@ -640,12 +658,12 @@ public class Main_layout extends AppCompatActivity {
             fats_intake    = (int)(fats_intake + (u_weight/3));
         }
 
-        if(u_activity.equals("Desk job"))
+        if(u_activity.equals("Occationally"))
         {
             calorie_intake = calorie_intake + 200;
-            protein_intake = protein_intake + 10;
-            crabs_intake   = crabs_intake + 10;
-            fats_intake    = fats_intake + 10;
+            protein_intake = protein_intake + 20;
+            crabs_intake   = crabs_intake + 30;
+            fats_intake    = fats_intake + 15;
         }
         if(u_activity.equals("Active"))
         {

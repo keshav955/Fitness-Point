@@ -181,11 +181,13 @@ public class Main2Activity extends AppCompatActivity {
 
                             if(task.getResult().getAdditionalUserInfo().isNewUser())
                             {
-                                Toast.makeText(Main2Activity.this, user.getEmail().toString(),Toast.LENGTH_SHORT).show();
-                                Toast.makeText(Main2Activity.this, user.getDisplayName().toString(),Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(Main2Activity.this, user.getEmail().toString(),Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(Main2Activity.this, user.getDisplayName().toString(),Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Main2Activity.this,Sign_up.class);
-                               // i.putExtra("name",user.getDisplayName().toString());
-                                //i.putExtra("email",user.getEmail().toString());
+                                i.putExtra("name",user.getDisplayName().toString());
+                                i.putExtra("email",user.getEmail().toString());
+
+                                i.putExtra("sign_up","google");
                                 /*count = 1;
                                 i.putExtra("count",count);
                                 *///i.putExtra("age",user.getPhotoUrl());

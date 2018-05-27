@@ -62,6 +62,8 @@ public class Sign_up extends AppCompatActivity {
 
     Uri profile_image_uri ;
 
+    public static String name_google = "", email_google = "";
+
     Boolean image_selected = false;
 
     ImageView image_view ;
@@ -90,6 +92,11 @@ public class Sign_up extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         image_view = findViewById(R.id.profile_image);
 
+        if(getIntent().getStringExtra("sign_up").equals("google")) {
+
+            name_google =  getIntent().getStringExtra("name");
+            email_google = getIntent().getStringExtra("email");
+        }
 
         FragmentManager fm = getSupportFragmentManager();
 
@@ -117,10 +124,6 @@ public class Sign_up extends AppCompatActivity {
 
 
        // int Count = getIntent().getIntExtra("count",0);
-
-        EditText email_et = findViewById(R.id.email);
-        EditText password_et = findViewById(R.id.password);
-
 
           // String name = getIntent().getStringExtra("name");
           //String  email = getIntent().getStringExtra("email");
@@ -352,8 +355,10 @@ public class Sign_up extends AppCompatActivity {
             {
                 if(lbs.getVisibility() == View.VISIBLE ) {
                     wt = String.valueOf(lbs.getValue());
-                    weight_et.setText(wt);
-                    weight_kg.setText("Lbs");
+                    int ii= lbs.getValue();
+                    int weight_lbs = (int)(ii / 2.2);
+                    weight_et.setText(String.valueOf(weight_lbs));
+                    weight_kg.setText("Kg");
                 }
                 else
                 {

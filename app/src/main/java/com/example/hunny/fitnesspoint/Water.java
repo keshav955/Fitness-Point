@@ -76,7 +76,7 @@ public class Water extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //pd.hide();
+                pd.hide();
 
                 SignUpData data = dataSnapshot.getValue(SignUpData.class);
 
@@ -91,6 +91,25 @@ public class Water extends AppCompatActivity {
                  water = calculate_intake();
 
                 litre = String.valueOf(water);
+
+                FirebaseDatabase databases = FirebaseDatabase.getInstance();
+
+                databases.getReference().child("Goals").child(auth.getCurrentUser().getEmail().replace(".",""))
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                SignUpData data = dataSnapshot.getValue(SignUpData.class);
+
+                                activity= data.activity;
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
 
                 waveProgressbar.setCurrent( current,litre + "ml"); // 77, "788M/1024M"
                 waveProgressbar.setMaxProgress(water);

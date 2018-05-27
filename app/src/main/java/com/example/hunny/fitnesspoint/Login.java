@@ -232,6 +232,8 @@ public class Login extends AppCompatActivity {
 
         Intent i = new Intent(Login.this ,Sign_up.class);
 
+        i.putExtra("sign_up","sign");
+
         startActivity(i);
     }
 

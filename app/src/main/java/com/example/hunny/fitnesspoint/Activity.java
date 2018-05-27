@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hunny.fitnesspoint.R;
+import com.example.hunny.fitnesspoint.dataModel.SignUpData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Activity extends AppCompatActivity {
 
@@ -131,6 +134,14 @@ public class Activity extends AppCompatActivity {
 
             return;
         }
+
+        SignUpData activity_type = new SignUpData(activity);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        FirebaseAuth authenticate = FirebaseAuth.getInstance();
+
+        database.getReference().child("Goals").child(authenticate.getCurrentUser().getEmail().replace(".","")).setValue(activity_type);
 
         Intent i = new Intent(Activity.this,Main_layout.class);
         i.putExtra("activity", activity);

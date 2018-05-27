@@ -15,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,6 +50,24 @@ public class Sign_Fragment extends Fragment {
 
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_sign, container, false);
+
+        if(Sign_up.name_google.equals(""))
+        {
+
+        }
+        else {
+            EditText email_et = v.findViewById(R.id.email);
+            EditText name_et = v.findViewById(R.id.name);
+
+            name_et.setText(Sign_up.name_google);
+            email_et.setText(Sign_up.email_google);
+
+            name_et.setEnabled(false);
+            name_et.setKeyListener(null);
+
+            email_et.setEnabled(false);
+            email_et.setKeyListener(null);
+        }
 
         dob = v.findViewById(R.id.date_of_birth);
 
